@@ -1,0 +1,14 @@
+schema:
+  - "xxx":
+      headers:
+        x-hasura-admin-secret: "xxx"
+documents:
+  - "src/**/*.graphql"
+generates:
+  src/utils/__generated__/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withRefetchFn: true
