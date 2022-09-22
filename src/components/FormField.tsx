@@ -32,11 +32,11 @@ export const FormField = ({
   ...props
 }: InputProps & FormFieldProps) => {
   return (
-    <FormControl isInvalid={Boolean(error)}>
+    <FormControl isInvalid={Boolean(error)} mt="15px">
       <FormLabel htmlFor={props.name}>{label}</FormLabel>
       <Input
         type={props.type}
-        placeholder={props.name}
+        placeholder={`${label}...`}
         {...register(props.name)}
       />
       <FormErrorMessage>

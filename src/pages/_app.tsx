@@ -1,10 +1,16 @@
 import type { AppProps } from "next/app";
+import { AuthenticationGuard } from "../features/login/components/AuthenticationGuard";
+import { Layout } from "../features/navigation/components/Layout";
 import { CombinedProvider } from "../providers/wrapper";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component }: AppProps) {
   return (
     <CombinedProvider>
-      <Component {...pageProps} />
+      <AuthenticationGuard>
+        <Layout>
+          <Component />
+        </Layout>
+      </AuthenticationGuard>
     </CombinedProvider>
   );
 }

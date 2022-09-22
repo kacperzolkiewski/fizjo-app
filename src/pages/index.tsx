@@ -1,8 +1,3 @@
-import type { NextPage } from "next";
-import { Button } from "@chakra-ui/react";
+import { HomeView } from "../features/home/views/HomeView";
 
-const Home: NextPage = () => {
-  return <Button>xxx</Button>;
-};
-
-export default Home;
+export default HomeView;
