@@ -17,6 +17,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
       <AnimatedBox
         animate={{ paddingLeft: isNavbarExpanded ? "266px" : "120px" }}
         layout="position"
+        bg="#F5F5F5"
       >
         <NavigationBar
           isExpanded={isNavbarExpanded}

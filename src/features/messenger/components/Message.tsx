@@ -9,7 +9,7 @@ interface MessageProps {
 export const Message = ({ me, message }: MessageProps) => {
   return (
     <Flex
-      bg={me ? "purple.500" : "teal.400"}
+      bg={me ? "purple.500" : "gray.400"}
       mb="5px"
       color="#fff"
       w="350px"

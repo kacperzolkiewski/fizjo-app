@@ -25,7 +25,7 @@ export const SignOutModal = ({
       <ModalCloseButton />
       <ModalBody my={4}>Czy na pewno chcesz się wylogować?</ModalBody>
       <ModalFooter>
-        <Button mr={3} variant="outline" onClick={onClose}>
+        <Button mr={3} colorScheme="purple" onClick={onClose}>
           Anuluj
         </Button>
         <Button w={40} onClick={onSignOut}>

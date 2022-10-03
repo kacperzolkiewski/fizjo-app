@@ -1,13 +1,13 @@
 import { Flex } from "@chakra-ui/react";
-import React from "react";
+import React, { ReactNode } from "react";
 import { MessagesFeed } from "../components/MessagesFeed";
 import { Sidebar } from "../components/Sidebar";
 
-export const MessengerView = () => {
+export const MessangerView = ({ children }: { children?: ReactNode }) => {
   return (
-    <Flex minHeight="100vh" pl="20px">
+    <Flex h="100vh" pl="20px">
       <Sidebar />
-      <MessagesFeed />
+      {children}
     </Flex>
   );
 };
