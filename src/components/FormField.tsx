@@ -5,7 +5,7 @@ import {
   Input,
   InputProps,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import {
   FieldError,
   FieldErrorsImpl,
@@ -15,7 +15,7 @@ import {
 } from "react-hook-form";
 
 interface FormFieldProps {
-  label: string;
+  label?: string;
   name: string;
   error:
     | string
@@ -29,6 +29,8 @@ export const FormField = ({
   label,
   error,
   register,
+  value,
+  onChange,
   ...props
 }: InputProps & FormFieldProps) => {
   return (
@@ -38,6 +40,8 @@ export const FormField = ({
         type={props.type}
         placeholder={`${label}...`}
         {...register(props.name)}
+        value={value}
+        onChange={onChange}
       />
       <FormErrorMessage>
         <>{error}</>

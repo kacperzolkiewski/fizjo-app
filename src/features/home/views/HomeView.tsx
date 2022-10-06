@@ -9,13 +9,13 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import React from "react";
-import { Physiotherapist } from "../components/Physiotherapist";
+import { PhysiotherapistBanner } from "../components/PhysiotherapistBanner";
 
 export const HomeView = () => {
   return (
     <Stack p="20px" spacing={8} alignItems="center">
       <Flex flexDir="column" alignItems="flex-start" w="100%">
-        <Heading fontSize="50px">Fizjoterapeuci</Heading>
+        <Heading fontSize="40px">Fizjoterapeuci</Heading>
         <Box w="340px" mt="20px">
           <InputGroup bg="white">
             <InputLeftElement
@@ -26,9 +26,9 @@ export const HomeView = () => {
           </InputGroup>
         </Box>
       </Flex>
-      <Physiotherapist />
-      <Physiotherapist />
-      <Physiotherapist />
+      <PhysiotherapistBanner />
+      <PhysiotherapistBanner />
+      <PhysiotherapistBanner />
     </Stack>
   );
 };

@@ -1,3 +1,3 @@
-import { MessangerView } from "../../features/messenger/views/MessangerView";
+import { MessengerView } from "../../features/messenger/views/MessengerView";
 
-export default MessangerView;
+export default MessengerView;

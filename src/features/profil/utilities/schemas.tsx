@@ -17,3 +17,24 @@ export const editPatientSchema = yup.object().shape({
     .min(9, "Numer musi posiadać 9 cyfr")
     .max(9, "Numer musi posiadać 9 cyfr"),
 });
+
+export const USER_SCHEMAS = {
+  emailSchema: yup.object().shape({
+    email: yup
+      .string()
+      .email("Niepoprawny adres email")
+      .required("Email jest wymagany"),
+  }),
+  phoneSchema: yup.object().shape({
+    phone: yup
+      .string()
+      .min(9, "Numer musi posiadać 9 cyfr")
+      .max(9, "Numer musi posiadać 9 cyfr"),
+  }),
+  adressSchema: yup.object().shape({
+    adress: yup.string().required("Adres jest wymagany"),
+  }),
+  aboutMeSchema: yup.object().shape({
+    aboutMe: yup.string().required("Napisz coś o sobie"),
+  }),
+};

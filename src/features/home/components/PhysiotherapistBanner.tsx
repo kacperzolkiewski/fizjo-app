@@ -8,7 +8,7 @@ import { PhysiotherapistInfo } from "./PhysiotherapistInfo";
 
 const AnimatedStack = motion(VStack);
 
-export const Physiotherapist = () => {
+export const PhysiotherapistBanner = () => {
   const [showOpinions, setShowOpinions] = useState(false);
 
   const stackVariants = {

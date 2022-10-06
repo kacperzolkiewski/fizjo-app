@@ -1,6 +1,5 @@
 import {
   Button,
-  Center,
   Flex,
   Modal,
   ModalBody,
@@ -9,12 +8,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormField } from "../../../components/FormField";
-import { editPatientSchema } from "../utilities/editPatientSchema";
+import { editPatientSchema } from "../utilities/schemas";
 
 export const EditPatientModal = ({
   editValue,

@@ -22,7 +22,6 @@ export const LoginView = () => {
   const disableForm = isLoading || needsEmailVerification || isSubmitting;
 
   const submitForm: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     const { isError, error } = await signInEmailPassword(
       data.email,
       data.password
