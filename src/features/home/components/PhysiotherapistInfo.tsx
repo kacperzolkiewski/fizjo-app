@@ -3,28 +3,26 @@ import AvatarImage from "../../../assets/awatar.png";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { ArrayElement } from "../../../utilities/types";
+import { PhysiotherapistsQuery } from "../../../api/graphql";
 
 interface PhysiotherapistInfoProps {
-  name: string;
-  surname: string;
-  opinionsNumber: number;
-  adress: string;
-  visitPrice: number;
+  physiotherapist: ArrayElement<PhysiotherapistsQuery["physiotherapists"]>;
 }
 
 export const PhysiotherapistInfo = ({
-  name,
-  surname,
-  opinionsNumber,
-  adress,
-  visitPrice,
+  physiotherapist,
 }: PhysiotherapistInfoProps) => {
+  const { id, name, surname, opinions, adress, visit_types } = physiotherapist;
+
+  const opinionsNumber = opinions.length;
+
   return (
     <VStack w="40%" h="100%" p="20px">
       <HStack spacing={4} h="40%">
         <Image src={AvatarImage} width="80px" height="80px" />
         <VStack spacing={0} alignItems="flex-start">
-          <Link href={`physiotherapist/${1}`}>
+          <Link href={`physiotherapist/${id}`}>
             <Text
               fontWeight="bold"
               fontSize="24px"
@@ -42,7 +40,11 @@ export const PhysiotherapistInfo = ({
         <Text mt="20px" mb="10px">
           {adress}
         </Text>
-        <Text>Fizjoterapia - {visitPrice} zł</Text>
+        {visit_types.map((visitType) => (
+          <Text>
+            {visitType.name} - {visitType.price} zł
+          </Text>
+        ))}
       </Box>
     </VStack>
   );

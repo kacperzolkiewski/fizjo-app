@@ -1,18 +1,11 @@
-import { Box, Flex, Heading, Stack, VStack } from "@chakra-ui/react";
-import { useUserData } from "@nhost/react";
 import React from "react";
 import { PatientProfile } from "../components/PatientProfile";
-import { PhysiotherapistProfile } from "../components/PhysiotherapistProfile";
+import { PhysiotherapistProfile } from "../../physiotherapist/components/PhysiotherapistProfile";
+import { useUserData } from "@nhost/react";
 
 export const ProfileView = () => {
+  const isPatient = useUserData()?.metadata.isPatient;
   const user = useUserData();
-
-  return (
-    // <PatientProfile
-    //   name={user?.metadata.name as string}
-    //   surname={user?.metadata.surname as string}
-    //   email={user?.email as string}
-    // />
-    <PhysiotherapistProfile />
-  );
+  console.log(user);
+  return isPatient ? <PatientProfile /> : <PhysiotherapistProfile />;
 };

@@ -1,0 +1,23 @@
+mutation CreatePhysiotherapist(
+  $name: String = ""
+  $surname: String = ""
+  $phone: String = ""
+  $adress: String = ""
+  $aboutMe: String = ""
+  $user_id: uuid = ""
+) {
+  insert_physiotherapists(
+    objects: {
+      name: $name
+      surname: $surname
+      phone: $phone
+      adress: $adress
+      aboutMe: $aboutMe
+      user_id: $user_id
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

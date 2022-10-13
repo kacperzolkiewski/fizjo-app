@@ -1,0 +1,11 @@
+query Opinions($physiotherapist_id: uuid = "") {
+  opinions(where: { physiotherapist_id: { _eq: $physiotherapist_id } }) {
+    comment
+    created_at
+    patient {
+      name
+      surname
+      id
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation UpdatePatientEmail($userId: uuid = "", $email: citext = "") {
+  updateUser(pk_columns: { id: $userId }, _set: { email: $email }) {
+    email
+  }
+}

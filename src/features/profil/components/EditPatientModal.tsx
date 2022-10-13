@@ -12,15 +12,16 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormField } from "../../../components/FormField";
+import { Patient } from "../../../utilities/types";
 import { editPatientSchema } from "../utilities/schemas";
 
 export const EditPatientModal = ({
-  editValue,
+  patient,
   isOpen,
   onClose,
   onEditUser,
 }: {
-  editValue: string;
+  patient: Patient;
   isOpen: boolean;
   onClose: () => void;
   onEditUser: () => void;

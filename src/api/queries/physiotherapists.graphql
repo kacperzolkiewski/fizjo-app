@@ -1,0 +1,22 @@
+query Physiotherapists {
+  physiotherapists {
+    id
+    aboutMe
+    adress
+    name
+    phone
+    surname
+    visit_types {
+      name
+      price
+    }
+    opinions {
+      comment
+      created_at
+      patient {
+        name
+        surname
+      }
+    }
+  }
+}

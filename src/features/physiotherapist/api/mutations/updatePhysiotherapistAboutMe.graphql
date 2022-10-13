@@ -1,0 +1,8 @@
+mutation UpdatePhysiotherapistAboutMe($id: uuid = "", $aboutMe: String = "") {
+  update_physiotherapists_by_pk(
+    pk_columns: { id: $id }
+    _set: { aboutMe: $aboutMe }
+  ) {
+    id
+  }
+}

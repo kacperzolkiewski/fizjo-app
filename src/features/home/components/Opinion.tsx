@@ -4,8 +4,8 @@ import React from "react";
 import AvatarImage from "../../../assets/awatar.png";
 
 interface OpinionProps {
-  name: string;
-  surname: string;
+  name?: string;
+  surname?: string;
   opinion: string;
   date: string;
 }

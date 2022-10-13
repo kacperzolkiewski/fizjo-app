@@ -1,15 +1,15 @@
-import { PhoneIcon } from "@chakra-ui/icons";
+import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface ProfilPropertyBoxProps {
-  property: string;
-  propertyValue: string;
+  label: string;
+  propertyValue?: string;
   onClick?: () => void;
 }
 
 export const ProfilPropertyBox = ({
-  property,
+  label,
   propertyValue,
   onClick,
 }: ProfilPropertyBoxProps) => {
@@ -30,10 +30,10 @@ export const ProfilPropertyBox = ({
       onClick={onClick}
     >
       <Heading fontSize="18px" color="purple.500">
-        {property}
+        {label}
       </Heading>
       <PhoneIcon position="absolute" right={5} />
-      <Text color="gray">{propertyValue}</Text>
+      <Text color="gray">{propertyValue || "..."}</Text>
     </Button>
   );
 };

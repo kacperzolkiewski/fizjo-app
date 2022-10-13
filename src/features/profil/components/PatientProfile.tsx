@@ -1,21 +1,24 @@
-import { Box, Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import AvatarImage from "../../../assets/awatar.png";
 import Image from "next/image";
 import React from "react";
 import { GridText } from "../../../components/GridText";
+import { usePatient } from "../../../utilities/usePatient";
+import { EditIcon } from "@chakra-ui/icons";
+import { EditPatientModal } from "./EditPatientModal";
 
-interface PatientProfileProps {
-  image?: string;
-  name: string;
-  surname: string;
-  email: string;
-}
+export const PatientProfile = () => {
+  const patient = usePatient();
+  const { name, surname, email, id, pesel, phone } = patient;
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-export const PatientProfile = ({
-  name,
-  surname,
-  email,
-}: PatientProfileProps) => {
   return (
     <Flex h="100vh" p="20px" justifyContent="center" alignItems="center">
       <Box
@@ -37,13 +40,9 @@ export const PatientProfile = ({
           <Image src={AvatarImage} width="180px" height="180px" />
           <Flex flexDir="column" mt="15px">
             <Heading fontSize="20px" textAlign="center">
-              {/* {name} {surname} */}
-              Kacper Żółkieski
+              {`${name} ${surname}`}
             </Heading>
-            <Text textAlign="center">
-              {/* {email} */}
-              kacperzolkiewski@gmail.com
-            </Text>
+            <Text textAlign="center">{email}</Text>
           </Flex>
         </Flex>
         <Grid
@@ -54,16 +53,32 @@ export const PatientProfile = ({
           templateColumns="repeat(2, 1fr)"
           gap={4}
           alignItems="center"
+          position="relative"
           justifyItems="center"
         >
-          <GridText label="Imię" value="Kacper" />
-          <GridText label="Nazwisko" value="Żółkiewski" />
-          <GridText label="Email" value="kacperzolkiewski@gmail" />
-          <GridText label="Pesel" value="1235431234321" />
-          <GridText label="Telefon" value="123432123" />
-          <GridText label="Adres" value="Kraków, ul. xasdawdasd" />
+          <GridText label="Imię" value={name} />
+          <GridText label="Nazwisko" value={surname} />
+          <GridText label="Email" value={email} />
+          <GridText label="Pesel" value={pesel} />
+          <GridText label="Telefon" value={phone} />
+          <EditIcon
+            position="absolute"
+            w="100px"
+            h="100px"
+            cursor="pointer"
+            right={0}
+            bottom={10}
+            onClick={onOpen}
+          />
         </Grid>
       </Box>
+
+      <EditPatientModal
+        patient={patient}
+        isOpen={isOpen}
+        onClose={onClose}
+        onEditUser={() => {}}
+      />
     </Flex>
   );
 };

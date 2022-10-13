@@ -1,0 +1,7 @@
+query VisitTypes($physiotherapist_id: uuid = "") {
+  visit_types(where: { physiotherapist_id: { _eq: $physiotherapist_id } }) {
+    id
+    name
+    price
+  }
+}

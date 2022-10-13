@@ -1,0 +1,10 @@
+query GetUserById($user_id: uuid = "") {
+  physiotherapists(where: { user_id: { _eq: $user_id } }) {
+    id
+    adress
+    aboutMe
+    name
+    surname
+    phone
+  }
+}

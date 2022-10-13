@@ -31,10 +31,11 @@ export const FormField = ({
   register,
   value,
   onChange,
+  w,
   ...props
 }: InputProps & FormFieldProps) => {
   return (
-    <FormControl isInvalid={Boolean(error)} mt="15px">
+    <FormControl isInvalid={Boolean(error)} w={w} mt="15px">
       <FormLabel htmlFor={props.name}>{label}</FormLabel>
       <Input
         type={props.type}

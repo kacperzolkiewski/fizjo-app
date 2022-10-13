@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Center,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -13,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Opinion } from "../../home/components/Opinion";
-import { ProfilPropertyBox } from "./ProfilPropertyBox";
+import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
 
 export const OpinionsModal = () => {
   const { onOpen, isOpen, onClose } = useDisclosure();
@@ -21,7 +20,7 @@ export const OpinionsModal = () => {
   return (
     <Box>
       <ProfilPropertyBox
-        property="Opinie"
+        label="Opinie"
         propertyValue="34 opinii"
         onClick={onOpen}
       />

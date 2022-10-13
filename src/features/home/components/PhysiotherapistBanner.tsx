@@ -1,15 +1,37 @@
 import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
+import {
+  Physiotherapists,
+  PhysiotherapistsQuery,
+  PhysiotherapistsQueryHookResult,
+  PhysiotherapistsQueryResult,
+} from "../../../api/graphql";
 import { Calendar } from "../../../components/Calendar";
+import { ArrayElement } from "../../../utilities/types";
 import { Opinion } from "./Opinion";
 import { PhysiotherapistInfo } from "./PhysiotherapistInfo";
 
 const AnimatedStack = motion(VStack);
 
-export const PhysiotherapistBanner = () => {
+interface PhysiotherapistBannerProps {
+  physiotherapist: ArrayElement<PhysiotherapistsQuery["physiotherapists"]>;
+}
+
+export const PhysiotherapistBanner = ({
+  physiotherapist,
+}: PhysiotherapistBannerProps) => {
   const [showOpinions, setShowOpinions] = useState(false);
+  const opinionsLength = physiotherapist.opinions.length;
 
   const stackVariants = {
     expanded: { height: "300px" },
@@ -20,13 +42,7 @@ export const PhysiotherapistBanner = () => {
   return (
     <Flex w="80%" flexDir="column" bg="white" rounded={5}>
       <HStack spacing={0.5} h="350px" mb="20px">
-        <PhysiotherapistInfo
-          name="Danel"
-          surname="Koszyk"
-          opinionsNumber={54}
-          adress="Czerwonego Prądnika 8A, Kraków"
-          visitPrice={150}
-        />
+        <PhysiotherapistInfo physiotherapist={physiotherapist} />
         <Box p="20px" w="60%" h="100%" borderLeft="1px solid lightgray">
           <Calendar />
         </Box>
@@ -40,22 +56,22 @@ export const PhysiotherapistBanner = () => {
         px="20px"
         spacing={4}
       >
-        <Opinion
-          name="Kacper"
-          surname="Żółkiewski"
-          opinion="Wizyta przebiegła w bardzo pozytywnej atmosferze. Daniel jest
-        profesjonalistą w swoim fachu. Polecam!!! ssssssssssssss zsdasdas
-        asdasdasd"
-          date="22.07.2022"
-        />
-        <Opinion
-          name="Kacper"
-          surname="Żółkiewski"
-          opinion="Wizyta przebiegła w bardzo pozytywnej atmosferze. Daniel jest
-        profesjonalistą w swoim fachu. Polecam!!! ssssssssssssss zsdasdas
-        asdasdasd"
-          date="22.07.2022"
-        />
+        {opinionsLength > 0 ? (
+          physiotherapist.opinions.map((opinion) => (
+            <Opinion
+              name={opinion.patient?.name}
+              surname={opinion.patient?.surname}
+              opinion={opinion.comment}
+              date={opinion.created_at}
+            />
+          ))
+        ) : (
+          <Flex w="100%" h="100%" alignItems="center" justifyContent="center">
+            <Heading>
+              Ten fizjoterapeuta nie posiada jeszcze żadnych opinii
+            </Heading>
+          </Flex>
+        )}
       </AnimatedStack>
       <Button
         bg="white"

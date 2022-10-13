@@ -1,0 +1,19 @@
+mutation createPatient(
+  $name: String = ""
+  $pesel: String = ""
+  $phone: String = ""
+  $surname: String = ""
+  $user_id: uuid = ""
+) {
+  insert_patients_one(
+    object: {
+      pesel: $pesel
+      name: $name
+      phone: $phone
+      surname: $surname
+      user_id: $user_id
+    }
+  ) {
+    id
+  }
+}

@@ -1,3 +1,3 @@
-import { PhysiotherapistView } from "../../../features/phystiotherapist/views/PhysiotherapistView";
+import { PhysiotherapistView } from "../../../features/physiotherapist/views/PhysiotherapistView";
 
 export default PhysiotherapistView;

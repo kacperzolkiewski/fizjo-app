@@ -1,0 +1,15 @@
+mutation CreateVisitType(
+  $name: String = ""
+  $price: String = ""
+  $physiotherapist_id: uuid = ""
+) {
+  insert_visit_types_one(
+    object: {
+      name: $name
+      price: $price
+      physiotherapist_id: $physiotherapist_id
+    }
+  ) {
+    id
+  }
+}

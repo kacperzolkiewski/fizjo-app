@@ -5,6 +5,8 @@ import { Button, Flex, useToast } from "@chakra-ui/react";
 import { FormField } from "../../../components/FormField";
 import { registerSchema } from "../utilities/registerSchema";
 import { useSignUpEmailPassword } from "@nhost/react";
+import { useCreatePhysiotherapistMutation } from "../../physiotherapist/api/graphql";
+import { useCreatePatientMutation } from "../../profil/api/graphql";
 
 export const RegisterView = ({ isPatient }: { isPatient: boolean }) => {
   const {
@@ -14,20 +16,20 @@ export const RegisterView = ({ isPatient }: { isPatient: boolean }) => {
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
+  const [createPhysiotherapist] = useCreatePhysiotherapistMutation();
+  const [createPatient] = useCreatePatientMutation();
+
   const showToast = useToast();
 
   const { signUpEmailPassword } = useSignUpEmailPassword();
 
   const submitForm: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
-    const { isError, error } = await signUpEmailPassword(
+    const { isError, error, user } = await signUpEmailPassword(
       data.email,
       data.password,
       {
         allowedRoles: ["user"],
         metadata: {
-          name: data.name,
-          surname: data.surname,
           isPatient: isPatient,
         },
       }
@@ -41,6 +43,23 @@ export const RegisterView = ({ isPatient }: { isPatient: boolean }) => {
         isClosable: true,
       });
     } else {
+      {
+        isPatient
+          ? await createPatient({
+              variables: {
+                name: data.name,
+                surname: data.surname,
+                user_id: user?.id,
+              },
+            })
+          : await createPhysiotherapist({
+              variables: {
+                name: data.name,
+                surname: data.surname,
+                user_id: user?.id,
+              },
+            });
+      }
       showToast({
         title: "Pomyślnie zarejestrowano",
         status: "success",

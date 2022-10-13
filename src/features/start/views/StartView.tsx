@@ -13,8 +13,10 @@ export const StartView = () => {
       alignItems="center"
       minH="100vh"
       flexDir="column"
+      bg="purple.500"
     >
       <Flex
+        bg="white"
         w="50%"
         h="700px"
         justifyContent="space-around"

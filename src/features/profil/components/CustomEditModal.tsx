@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,26 +13,28 @@ import {
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { USER_SCHEMAS } from "../utilities/schemas";
-import { ProfilPropertyBox } from "./ProfilPropertyBox";
+import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
 import * as yup from "yup";
 import { FormField } from "../../../components/FormField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CustomEditModalProps {
   property: string;
-  propertyValue: string;
+  propertyValue?: string;
+  label: string;
   schema: yup.AnyObjectSchema;
+  onEdit: (value: string) => void;
 }
 
 export const CustomEditModal = ({
   property,
   propertyValue,
+  label,
   schema,
+  onEdit,
 }: CustomEditModalProps) => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [inputValue, setValue] = useState(propertyValue);
-
   const {
     register,
     handleSubmit,
@@ -41,13 +44,17 @@ export const CustomEditModal = ({
   });
 
   const submitForm: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
+    onEdit(data[property]);
   };
+
+  useEffect(() => {
+    setValue(propertyValue);
+  }, [propertyValue]);
 
   return (
     <Box>
       <ProfilPropertyBox
-        property={property}
+        label={label}
         propertyValue={propertyValue}
         onClick={onOpen}
       />
@@ -67,10 +74,10 @@ export const CustomEditModal = ({
               }}
             >
               <FormField
-                name={"email"}
+                name={property}
                 value={inputValue}
-                label={property}
-                error={errors.email?.message}
+                label={label}
+                error={errors[property]?.message}
                 register={register}
                 onChange={(e) => {
                   setValue(e.currentTarget.value);

@@ -1,11 +1,26 @@
 schema:
-  - "xxx":
+  - "https://kxceigyoylsfsdmayqed.nhost.run/v1/graphql":
       headers:
-        x-hasura-admin-secret: "xxx"
-documents:
-  - "src/**/*.graphql"
+        x-hasura-admin-secret: "7635b5b2811293038622b0234a162de2"
 generates:
-  src/utils/__generated__/graphql.ts:
+  src/features/physiotherapist/api/graphql.ts:
+    documents: "src/features/physiotherapist/api/**/*.graphql"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withRefetchFn: true
+  src/api/graphql.ts:
+    documents: "src/api/**/*.graphql"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withRefetchFn: true
+  src/features/profil/api/graphql.ts:
+    documents: "src/features/profil/api/**/*.graphql"
     plugins:
       - "typescript"
       - "typescript-operations"

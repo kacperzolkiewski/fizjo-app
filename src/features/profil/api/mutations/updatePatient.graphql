@@ -1,0 +1,14 @@
+mutation updatePatient(
+  $id: uuid = ""
+  $name: String = ""
+  $pesel: String = ""
+  $phone: String = ""
+  $surname: String = ""
+) {
+  update_patients_by_pk(
+    pk_columns: { id: $id }
+    _set: { name: $name, pesel: $pesel, phone: $phone, surname: $surname }
+  ) {
+    id
+  }
+}

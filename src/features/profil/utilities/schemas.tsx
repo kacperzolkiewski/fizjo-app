@@ -11,7 +11,6 @@ export const editPatientSchema = yup.object().shape({
     .string()
     .min(11, "Pesel musi posiadać 11 cyfr")
     .max(11, "Pesel musi posiadać 11 cyfr"),
-  adress: yup.string(),
   phone: yup
     .string()
     .min(9, "Numer musi posiadać 9 cyfr")
@@ -36,5 +35,9 @@ export const USER_SCHEMAS = {
   }),
   aboutMeSchema: yup.object().shape({
     aboutMe: yup.string().required("Napisz coś o sobie"),
+  }),
+  visitTypesSchema: yup.object().shape({
+    name: yup.string().required("Typ wizyty jest wymagany"),
+    price: yup.string().required("Cena jest wymagana"),
   }),
 };
