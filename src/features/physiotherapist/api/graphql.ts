@@ -6650,6 +6650,13 @@ export type GetUserByIdQueryVariables = Exact<{
 
 export type GetUserByIdQuery = { __typename?: 'query_root', physiotherapists: Array<{ __typename?: 'physiotherapists', id: any, adress?: string | null, aboutMe?: string | null, name: string, surname: string, phone?: string | null }> };
 
+export type PhysiotherapistQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['uuid']>;
+}>;
+
+
+export type PhysiotherapistQuery = { __typename?: 'query_root', physiotherapists_by_pk?: { __typename?: 'physiotherapists', adress?: string | null, aboutMe?: string | null, name: string, phone?: string | null, surname: string, user?: { __typename?: 'users', email?: any | null } | null } | null };
+
 export type VisitTypesQueryVariables = Exact<{
   physiotherapist_id?: InputMaybe<Scalars['uuid']>;
 }>;
@@ -6915,6 +6922,51 @@ export type GetUserByIdLazyQueryHookResult = ReturnType<typeof useGetUserByIdLaz
 export type GetUserByIdQueryResult = Apollo.QueryResult<GetUserByIdQuery, GetUserByIdQueryVariables>;
 export function refetchGetUserByIdQuery(variables?: GetUserByIdQueryVariables) {
       return { query: GetUserByIdDocument, variables: variables }
+    }
+export const PhysiotherapistDocument = gql`
+    query Physiotherapist($id: uuid = "") {
+  physiotherapists_by_pk(id: $id) {
+    adress
+    aboutMe
+    name
+    phone
+    surname
+    user {
+      email
+    }
+  }
+}
+    `;
+
+/**
+ * __usePhysiotherapistQuery__
+ *
+ * To run a query within a React component, call `usePhysiotherapistQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePhysiotherapistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePhysiotherapistQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePhysiotherapistQuery(baseOptions?: Apollo.QueryHookOptions<PhysiotherapistQuery, PhysiotherapistQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PhysiotherapistQuery, PhysiotherapistQueryVariables>(PhysiotherapistDocument, options);
+      }
+export function usePhysiotherapistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PhysiotherapistQuery, PhysiotherapistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PhysiotherapistQuery, PhysiotherapistQueryVariables>(PhysiotherapistDocument, options);
+        }
+export type PhysiotherapistQueryHookResult = ReturnType<typeof usePhysiotherapistQuery>;
+export type PhysiotherapistLazyQueryHookResult = ReturnType<typeof usePhysiotherapistLazyQuery>;
+export type PhysiotherapistQueryResult = Apollo.QueryResult<PhysiotherapistQuery, PhysiotherapistQueryVariables>;
+export function refetchPhysiotherapistQuery(variables?: PhysiotherapistQueryVariables) {
+      return { query: PhysiotherapistDocument, variables: variables }
     }
 export const VisitTypesDocument = gql`
     query VisitTypes($physiotherapist_id: uuid = "") {

@@ -6,9 +6,10 @@ interface VisitTypeProps {
   id: string;
   name: string;
   price: string;
+  deleteIcon: boolean;
 }
 
-export const VisitType = ({ name, price }: VisitTypeProps) => {
+export const VisitType = ({ name, price, deleteIcon }: VisitTypeProps) => {
   return (
     <Flex
       h="40px"
@@ -21,7 +22,7 @@ export const VisitType = ({ name, price }: VisitTypeProps) => {
         <Text>{` ${name}`}</Text>
         <Text ml="10px">{`- ${price}zł`}</Text>
       </Flex>
-      <DeleteIcon />
+      {deleteIcon && <DeleteIcon />}
     </Flex>
   );
 };

@@ -56,12 +56,14 @@ export const EditPatientModal = ({
           >
             <Flex w="100%" gap="4">
               <FormField
+                placeholder={patient.name}
                 name="name"
                 label="Imię"
                 error={errors.name?.message}
                 register={register}
               />
               <FormField
+                placeholder={patient.surname}
                 name="surname"
                 label="Nazwisko"
                 error={errors.surname?.message}
@@ -70,6 +72,7 @@ export const EditPatientModal = ({
             </Flex>
             <Flex w="100%" gap="4">
               <FormField
+                placeholder={patient.email}
                 name="email"
                 label="Email"
                 error={errors.email?.message}
@@ -77,23 +80,19 @@ export const EditPatientModal = ({
               />
 
               <FormField
+                placeholder={patient.pesel}
                 name="pesel"
                 label="Pesel"
                 error={errors.pesel?.message}
                 register={register}
               />
             </Flex>
-            <Flex w="100%" gap="4" mb="32px">
+            <Flex w="50%" alignSelf="flex-start" gap="4" mb="32px">
               <FormField
+                placeholder={patient.phone}
                 name="phone"
                 label="Telefon"
                 error={errors.phone?.message}
-                register={register}
-              />
-              <FormField
-                name="adress"
-                label="Adres"
-                error={errors.adress?.message}
                 register={register}
               />
             </Flex>

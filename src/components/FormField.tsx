@@ -32,6 +32,7 @@ export const FormField = ({
   value,
   onChange,
   w,
+  placeholder,
   ...props
 }: InputProps & FormFieldProps) => {
   return (
@@ -39,7 +40,7 @@ export const FormField = ({
       <FormLabel htmlFor={props.name}>{label}</FormLabel>
       <Input
         type={props.type}
-        placeholder={`${label}...`}
+        placeholder={placeholder || `...`}
         {...register(props.name)}
         value={value}
         onChange={onChange}

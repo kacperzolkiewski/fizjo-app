@@ -1,0 +1,12 @@
+query Physiotherapist($id: uuid = "") {
+  physiotherapists_by_pk(id: $id) {
+    adress
+    aboutMe
+    name
+    phone
+    surname
+    user {
+      email
+    }
+  }
+}

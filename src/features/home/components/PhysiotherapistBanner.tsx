@@ -9,12 +9,14 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { isUndefined } from "lodash";
 import React, { useState } from "react";
 import {
   Physiotherapists,
   PhysiotherapistsQuery,
   PhysiotherapistsQueryHookResult,
   PhysiotherapistsQueryResult,
+  useOpinionsQuery,
 } from "../../../api/graphql";
 import { Calendar } from "../../../components/Calendar";
 import { ArrayElement } from "../../../utilities/types";
@@ -31,7 +33,10 @@ export const PhysiotherapistBanner = ({
   physiotherapist,
 }: PhysiotherapistBannerProps) => {
   const [showOpinions, setShowOpinions] = useState(false);
-  const opinionsLength = physiotherapist.opinions.length;
+  const { data } = useOpinionsQuery({
+    variables: { physiotherapist_id: physiotherapist.id },
+  });
+  const opinionsLength = data?.opinions.length;
 
   const stackVariants = {
     expanded: { height: "300px" },
@@ -56,14 +61,9 @@ export const PhysiotherapistBanner = ({
         px="20px"
         spacing={4}
       >
-        {opinionsLength > 0 ? (
-          physiotherapist.opinions.map((opinion) => (
-            <Opinion
-              name={opinion.patient?.name}
-              surname={opinion.patient?.surname}
-              opinion={opinion.comment}
-              date={opinion.created_at}
-            />
+        {!isUndefined(opinionsLength) && opinionsLength > 0 ? (
+          data?.opinions.map((opinion) => (
+            <Opinion key={opinion.id} opinion={opinion} />
           ))
         ) : (
           <Flex w="100%" h="100%" alignItems="center" justifyContent="center">

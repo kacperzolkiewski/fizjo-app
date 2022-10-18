@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
   useToast,
   VStack,
@@ -20,9 +21,11 @@ import { FormField } from "../../../components/FormField";
 import { USER_SCHEMAS } from "../utilities/schemas";
 import { VisitType } from "../../visits/components/VisitType";
 import { useVisitTypesQuery } from "../../physiotherapist/api/graphql";
+import { AddIcon } from "@chakra-ui/icons";
+import { isUndefined } from "lodash";
 
 interface VisitTypesModalProps {
-  onCreateVisitType: (name: string, price: string) => void;
+  onCreateVisitType?: (name: string, price: string) => void;
   physiotherapist_id?: string;
 }
 
@@ -47,7 +50,7 @@ export const VisitTypesModal = ({
   });
 
   const submitForm: SubmitHandler<FieldValues> = async (data) => {
-    onCreateVisitType(data.name, data.price);
+    onCreateVisitType && onCreateVisitType(data.name, data.price);
   };
 
   return (
@@ -61,47 +64,50 @@ export const VisitTypesModal = ({
         <ModalOverlay />
         <ModalContent p="32px" m={0} fontSize="18px" boxShadow="xl">
           <ModalCloseButton _hover={{ bg: "none" }} m="20px" />
-          <ModalHeader textAlign="center">Dodaj</ModalHeader>
+          <ModalHeader textAlign="center">Typy wizyt</ModalHeader>
           <ModalBody px="0" h="70%">
-            <form
-              onSubmit={handleSubmit(submitForm)}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
-              <Flex
-                w="100%"
-                gap={4}
-                justifyContent="space-between"
-                flexWrap="wrap"
+            {onCreateVisitType ? (
+              <form
+                onSubmit={handleSubmit(submitForm)}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  width: "100%",
+                }}
               >
-                <FormField
-                  name="name"
-                  label={"Typ wizyty"}
-                  error={errors["name"]?.message}
-                  register={register}
-                  w="65%"
-                />
-                <FormField
-                  w="30%"
-                  name="price"
-                  label={"Cena"}
-                  error={errors["price"]?.message}
-                  register={register}
-                />
-                <Button
-                  colorScheme="purple"
-                  isLoading={isSubmitting}
-                  type="submit"
+                <Flex
                   w="100%"
+                  gap={4}
+                  justifyContent="space-between"
+                  flexWrap="wrap"
                 >
-                  Dodaj
-                </Button>
-              </Flex>
-            </form>
+                  <FormField
+                    name="name"
+                    label={"Typ wizyty"}
+                    error={errors["name"]?.message}
+                    register={register}
+                    w="65%"
+                  />
+                  <FormField
+                    w="30%"
+                    name="price"
+                    label={"Cena"}
+                    error={errors["price"]?.message}
+                    register={register}
+                  />
+                  <Button
+                    colorScheme="purple"
+                    isLoading={isSubmitting}
+                    type="submit"
+                    w="100%"
+                  >
+                    <Text mr={3}>Dodaj</Text>
+                    <AddIcon />
+                  </Button>
+                </Flex>
+              </form>
+            ) : null}
             <VStack mt="20px" px="20px">
               {visitTypes?.map((visitType) => (
                 <VisitType
@@ -109,6 +115,7 @@ export const VisitTypesModal = ({
                   id={visitType.id}
                   name={visitType.name}
                   price={visitType.price}
+                  deleteIcon={!isUndefined(onCreateVisitType)}
                 />
               ))}
             </VStack>

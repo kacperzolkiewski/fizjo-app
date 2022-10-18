@@ -1,0 +1,17 @@
+mutation createOpinion(
+  $comment: String = ""
+  $created_at: timestamptz = ""
+  $patient_id: uuid = ""
+  $physiotherapist_id: uuid = ""
+) {
+  insert_opinions_one(
+    object: {
+      comment: $comment
+      created_at: $created_at
+      patient_id: $patient_id
+      physiotherapist_id: $physiotherapist_id
+    }
+  ) {
+    id
+  }
+}

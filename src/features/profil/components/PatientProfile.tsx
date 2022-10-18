@@ -16,6 +16,7 @@ import { EditPatientModal } from "./EditPatientModal";
 
 export const PatientProfile = () => {
   const patient = usePatient();
+  console.log(patient);
   const { name, surname, email, id, pesel, phone } = patient;
   const { isOpen, onOpen, onClose } = useDisclosure();
 

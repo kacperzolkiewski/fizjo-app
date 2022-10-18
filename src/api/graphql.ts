@@ -6590,12 +6590,22 @@ export type Visits_Updates = {
   where: Visits_Bool_Exp;
 };
 
+export type CreateOpinionMutationVariables = Exact<{
+  comment?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  patient_id?: InputMaybe<Scalars['uuid']>;
+  physiotherapist_id?: InputMaybe<Scalars['uuid']>;
+}>;
+
+
+export type CreateOpinionMutation = { __typename?: 'mutation_root', insert_opinions_one?: { __typename?: 'opinions', id: any } | null };
+
 export type OpinionsQueryVariables = Exact<{
   physiotherapist_id?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type OpinionsQuery = { __typename?: 'query_root', opinions: Array<{ __typename?: 'opinions', comment: string, created_at: any, patient?: { __typename?: 'patients', name: string, surname: string, id: any } | null }> };
+export type OpinionsQuery = { __typename?: 'query_root', opinions: Array<{ __typename?: 'opinions', id: any, comment: string, created_at: any, patient?: { __typename?: 'patients', name: string, surname: string, id: any } | null }> };
 
 export type PhysiotherapistsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6603,9 +6613,48 @@ export type PhysiotherapistsQueryVariables = Exact<{ [key: string]: never; }>;
 export type PhysiotherapistsQuery = { __typename?: 'query_root', physiotherapists: Array<{ __typename?: 'physiotherapists', id: any, aboutMe?: string | null, adress?: string | null, name: string, phone?: string | null, surname: string, visit_types: Array<{ __typename?: 'visit_types', name: string, price: string }>, opinions: Array<{ __typename?: 'opinions', comment: string, created_at: any, patient?: { __typename?: 'patients', name: string, surname: string } | null }> }> };
 
 
+export const CreateOpinionDocument = gql`
+    mutation createOpinion($comment: String = "", $created_at: timestamptz = "", $patient_id: uuid = "", $physiotherapist_id: uuid = "") {
+  insert_opinions_one(
+    object: {comment: $comment, created_at: $created_at, patient_id: $patient_id, physiotherapist_id: $physiotherapist_id}
+  ) {
+    id
+  }
+}
+    `;
+export type CreateOpinionMutationFn = Apollo.MutationFunction<CreateOpinionMutation, CreateOpinionMutationVariables>;
+
+/**
+ * __useCreateOpinionMutation__
+ *
+ * To run a mutation, you first call `useCreateOpinionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOpinionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOpinionMutation, { data, loading, error }] = useCreateOpinionMutation({
+ *   variables: {
+ *      comment: // value for 'comment'
+ *      created_at: // value for 'created_at'
+ *      patient_id: // value for 'patient_id'
+ *      physiotherapist_id: // value for 'physiotherapist_id'
+ *   },
+ * });
+ */
+export function useCreateOpinionMutation(baseOptions?: Apollo.MutationHookOptions<CreateOpinionMutation, CreateOpinionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOpinionMutation, CreateOpinionMutationVariables>(CreateOpinionDocument, options);
+      }
+export type CreateOpinionMutationHookResult = ReturnType<typeof useCreateOpinionMutation>;
+export type CreateOpinionMutationResult = Apollo.MutationResult<CreateOpinionMutation>;
+export type CreateOpinionMutationOptions = Apollo.BaseMutationOptions<CreateOpinionMutation, CreateOpinionMutationVariables>;
 export const OpinionsDocument = gql`
     query Opinions($physiotherapist_id: uuid = "") {
   opinions(where: {physiotherapist_id: {_eq: $physiotherapist_id}}) {
+    id
     comment
     created_at
     patient {

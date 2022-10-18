@@ -88,7 +88,7 @@ export const PhysiotherapistProfile = () => {
           <Image src={AvatarImage} width="250px" height="250px" />
         </Flex>
         <VStack spacing={4}>
-          <OpinionsModal />
+          <OpinionsModal physiotherapist_id={id} />
           <VisitTypesModal
             onCreateVisitType={(name: string, price: string) => {
               void onCreateVisitType({

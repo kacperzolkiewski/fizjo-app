@@ -1,10 +1,10 @@
-import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { PhoneIcon } from "@chakra-ui/icons";
+import { Button, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface ProfilPropertyBoxProps {
   label: string;
-  propertyValue?: string;
+  propertyValue?: string | null;
   onClick?: () => void;
 }
 
