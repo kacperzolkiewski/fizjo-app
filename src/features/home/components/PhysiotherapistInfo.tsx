@@ -40,8 +40,8 @@ export const PhysiotherapistInfo = ({
         <Text mt="20px" mb="10px">
           {adress}
         </Text>
-        {visit_types.map((visitType) => (
-          <Text>
+        {visit_types.map((visitType, index) => (
+          <Text key={index}>
             {visitType.name} - {visitType.price} zł
           </Text>
         ))}

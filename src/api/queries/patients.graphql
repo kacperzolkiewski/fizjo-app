@@ -1,0 +1,9 @@
+query Patients {
+  patients {
+    id
+    name
+    pesel
+    phone
+    surname
+  }
+}

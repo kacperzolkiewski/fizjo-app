@@ -1,0 +1,15 @@
+query UserMessages($physiotherapist_id: uuid = "", $patient_id: uuid = "") {
+  messages(
+    where: {
+      physiotherapist_id: { _eq: $physiotherapist_id }
+      patient_id: { _eq: $patient_id }
+    }
+  ) {
+    id
+    created_at
+    message
+    patient_id
+    physiotherapist_id
+    created_by
+  }
+}

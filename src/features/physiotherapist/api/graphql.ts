@@ -2383,6 +2383,7 @@ export type Locations_Updates = {
 export type Messages = {
   __typename?: 'messages';
   created_at: Scalars['timestamptz'];
+  created_by?: Maybe<Scalars['uuid']>;
   id: Scalars['uuid'];
   message: Scalars['String'];
   /** An object relationship */
@@ -2435,6 +2436,7 @@ export type Messages_Bool_Exp = {
   _not?: InputMaybe<Messages_Bool_Exp>;
   _or?: InputMaybe<Array<Messages_Bool_Exp>>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  created_by?: InputMaybe<Uuid_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   message?: InputMaybe<String_Comparison_Exp>;
   patient?: InputMaybe<Patients_Bool_Exp>;
@@ -2452,6 +2454,7 @@ export enum Messages_Constraint {
 /** input type for inserting data into table "messages" */
 export type Messages_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  created_by?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
   patient?: InputMaybe<Patients_Obj_Rel_Insert_Input>;
@@ -2464,6 +2467,7 @@ export type Messages_Insert_Input = {
 export type Messages_Max_Fields = {
   __typename?: 'messages_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  created_by?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
   patient_id?: Maybe<Scalars['uuid']>;
@@ -2473,6 +2477,7 @@ export type Messages_Max_Fields = {
 /** order by max() on columns of table "messages" */
 export type Messages_Max_Order_By = {
   created_at?: InputMaybe<Order_By>;
+  created_by?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
   patient_id?: InputMaybe<Order_By>;
@@ -2483,6 +2488,7 @@ export type Messages_Max_Order_By = {
 export type Messages_Min_Fields = {
   __typename?: 'messages_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  created_by?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
   patient_id?: Maybe<Scalars['uuid']>;
@@ -2492,6 +2498,7 @@ export type Messages_Min_Fields = {
 /** order by min() on columns of table "messages" */
 export type Messages_Min_Order_By = {
   created_at?: InputMaybe<Order_By>;
+  created_by?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
   patient_id?: InputMaybe<Order_By>;
@@ -2517,6 +2524,7 @@ export type Messages_On_Conflict = {
 /** Ordering options when selecting data from "messages". */
 export type Messages_Order_By = {
   created_at?: InputMaybe<Order_By>;
+  created_by?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
   patient?: InputMaybe<Patients_Order_By>;
@@ -2535,6 +2543,8 @@ export enum Messages_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  CreatedBy = 'created_by',
+  /** column name */
   Id = 'id',
   /** column name */
   Message = 'message',
@@ -2547,6 +2557,7 @@ export enum Messages_Select_Column {
 /** input type for updating data in table "messages" */
 export type Messages_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  created_by?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
   patient_id?: InputMaybe<Scalars['uuid']>;
@@ -2557,6 +2568,8 @@ export type Messages_Set_Input = {
 export enum Messages_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  CreatedBy = 'created_by',
   /** column name */
   Id = 'id',
   /** column name */
@@ -3521,7 +3534,6 @@ export type Mutation_RootUpdate_Messages_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_OpinionsArgs = {
-  _inc?: InputMaybe<Opinions_Inc_Input>;
   _set?: InputMaybe<Opinions_Set_Input>;
   where: Opinions_Bool_Exp;
 };
@@ -3529,7 +3541,6 @@ export type Mutation_RootUpdate_OpinionsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Opinions_By_PkArgs = {
-  _inc?: InputMaybe<Opinions_Inc_Input>;
   _set?: InputMaybe<Opinions_Set_Input>;
   pk_columns: Opinions_Pk_Columns_Input;
 };
@@ -3638,7 +3649,6 @@ export type Opinions = {
   /** An object relationship */
   physiotherapist?: Maybe<Physiotherapists>;
   physiotherapist_id?: Maybe<Scalars['uuid']>;
-  scale: Scalars['Int'];
 };
 
 /** aggregated selection of "opinions" */
@@ -3651,17 +3661,9 @@ export type Opinions_Aggregate = {
 /** aggregate fields of "opinions" */
 export type Opinions_Aggregate_Fields = {
   __typename?: 'opinions_aggregate_fields';
-  avg?: Maybe<Opinions_Avg_Fields>;
   count: Scalars['Int'];
   max?: Maybe<Opinions_Max_Fields>;
   min?: Maybe<Opinions_Min_Fields>;
-  stddev?: Maybe<Opinions_Stddev_Fields>;
-  stddev_pop?: Maybe<Opinions_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Opinions_Stddev_Samp_Fields>;
-  sum?: Maybe<Opinions_Sum_Fields>;
-  var_pop?: Maybe<Opinions_Var_Pop_Fields>;
-  var_samp?: Maybe<Opinions_Var_Samp_Fields>;
-  variance?: Maybe<Opinions_Variance_Fields>;
 };
 
 
@@ -3673,17 +3675,9 @@ export type Opinions_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "opinions" */
 export type Opinions_Aggregate_Order_By = {
-  avg?: InputMaybe<Opinions_Avg_Order_By>;
   count?: InputMaybe<Order_By>;
   max?: InputMaybe<Opinions_Max_Order_By>;
   min?: InputMaybe<Opinions_Min_Order_By>;
-  stddev?: InputMaybe<Opinions_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Opinions_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Opinions_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Opinions_Sum_Order_By>;
-  var_pop?: InputMaybe<Opinions_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Opinions_Var_Samp_Order_By>;
-  variance?: InputMaybe<Opinions_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "opinions" */
@@ -3691,17 +3685,6 @@ export type Opinions_Arr_Rel_Insert_Input = {
   data: Array<Opinions_Insert_Input>;
   /** upsert condition */
   on_conflict?: InputMaybe<Opinions_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type Opinions_Avg_Fields = {
-  __typename?: 'opinions_avg_fields';
-  scale?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "opinions" */
-export type Opinions_Avg_Order_By = {
-  scale?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "opinions". All fields are combined with a logical 'AND'. */
@@ -3716,7 +3699,6 @@ export type Opinions_Bool_Exp = {
   patient_id?: InputMaybe<Uuid_Comparison_Exp>;
   physiotherapist?: InputMaybe<Physiotherapists_Bool_Exp>;
   physiotherapist_id?: InputMaybe<Uuid_Comparison_Exp>;
-  scale?: InputMaybe<Int_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "opinions" */
@@ -3724,11 +3706,6 @@ export enum Opinions_Constraint {
   /** unique or primary key constraint on columns "id" */
   OpinionsPkey = 'opinions_pkey'
 }
-
-/** input type for incrementing numeric columns in table "opinions" */
-export type Opinions_Inc_Input = {
-  scale?: InputMaybe<Scalars['Int']>;
-};
 
 /** input type for inserting data into table "opinions" */
 export type Opinions_Insert_Input = {
@@ -3739,7 +3716,6 @@ export type Opinions_Insert_Input = {
   patient_id?: InputMaybe<Scalars['uuid']>;
   physiotherapist?: InputMaybe<Physiotherapists_Obj_Rel_Insert_Input>;
   physiotherapist_id?: InputMaybe<Scalars['uuid']>;
-  scale?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate max on columns */
@@ -3750,7 +3726,6 @@ export type Opinions_Max_Fields = {
   id?: Maybe<Scalars['uuid']>;
   patient_id?: Maybe<Scalars['uuid']>;
   physiotherapist_id?: Maybe<Scalars['uuid']>;
-  scale?: Maybe<Scalars['Int']>;
 };
 
 /** order by max() on columns of table "opinions" */
@@ -3760,7 +3735,6 @@ export type Opinions_Max_Order_By = {
   id?: InputMaybe<Order_By>;
   patient_id?: InputMaybe<Order_By>;
   physiotherapist_id?: InputMaybe<Order_By>;
-  scale?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -3771,7 +3745,6 @@ export type Opinions_Min_Fields = {
   id?: Maybe<Scalars['uuid']>;
   patient_id?: Maybe<Scalars['uuid']>;
   physiotherapist_id?: Maybe<Scalars['uuid']>;
-  scale?: Maybe<Scalars['Int']>;
 };
 
 /** order by min() on columns of table "opinions" */
@@ -3781,7 +3754,6 @@ export type Opinions_Min_Order_By = {
   id?: InputMaybe<Order_By>;
   patient_id?: InputMaybe<Order_By>;
   physiotherapist_id?: InputMaybe<Order_By>;
-  scale?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "opinions" */
@@ -3809,7 +3781,6 @@ export type Opinions_Order_By = {
   patient_id?: InputMaybe<Order_By>;
   physiotherapist?: InputMaybe<Physiotherapists_Order_By>;
   physiotherapist_id?: InputMaybe<Order_By>;
-  scale?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: opinions */
@@ -3828,9 +3799,7 @@ export enum Opinions_Select_Column {
   /** column name */
   PatientId = 'patient_id',
   /** column name */
-  PhysiotherapistId = 'physiotherapist_id',
-  /** column name */
-  Scale = 'scale'
+  PhysiotherapistId = 'physiotherapist_id'
 }
 
 /** input type for updating data in table "opinions" */
@@ -3840,51 +3809,6 @@ export type Opinions_Set_Input = {
   id?: InputMaybe<Scalars['uuid']>;
   patient_id?: InputMaybe<Scalars['uuid']>;
   physiotherapist_id?: InputMaybe<Scalars['uuid']>;
-  scale?: InputMaybe<Scalars['Int']>;
-};
-
-/** aggregate stddev on columns */
-export type Opinions_Stddev_Fields = {
-  __typename?: 'opinions_stddev_fields';
-  scale?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "opinions" */
-export type Opinions_Stddev_Order_By = {
-  scale?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Opinions_Stddev_Pop_Fields = {
-  __typename?: 'opinions_stddev_pop_fields';
-  scale?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "opinions" */
-export type Opinions_Stddev_Pop_Order_By = {
-  scale?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Opinions_Stddev_Samp_Fields = {
-  __typename?: 'opinions_stddev_samp_fields';
-  scale?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "opinions" */
-export type Opinions_Stddev_Samp_Order_By = {
-  scale?: InputMaybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Opinions_Sum_Fields = {
-  __typename?: 'opinions_sum_fields';
-  scale?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "opinions" */
-export type Opinions_Sum_Order_By = {
-  scale?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "opinions" */
@@ -3898,50 +3822,13 @@ export enum Opinions_Update_Column {
   /** column name */
   PatientId = 'patient_id',
   /** column name */
-  PhysiotherapistId = 'physiotherapist_id',
-  /** column name */
-  Scale = 'scale'
+  PhysiotherapistId = 'physiotherapist_id'
 }
 
 export type Opinions_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Opinions_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Opinions_Set_Input>;
   where: Opinions_Bool_Exp;
-};
-
-/** aggregate var_pop on columns */
-export type Opinions_Var_Pop_Fields = {
-  __typename?: 'opinions_var_pop_fields';
-  scale?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "opinions" */
-export type Opinions_Var_Pop_Order_By = {
-  scale?: InputMaybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Opinions_Var_Samp_Fields = {
-  __typename?: 'opinions_var_samp_fields';
-  scale?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "opinions" */
-export type Opinions_Var_Samp_Order_By = {
-  scale?: InputMaybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Opinions_Variance_Fields = {
-  __typename?: 'opinions_variance_fields';
-  scale?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "opinions" */
-export type Opinions_Variance_Order_By = {
-  scale?: InputMaybe<Order_By>;
 };
 
 /** column ordering options */

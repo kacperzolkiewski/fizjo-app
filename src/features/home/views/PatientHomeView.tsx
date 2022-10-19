@@ -8,12 +8,18 @@ import {
   InputLeftElement,
   Stack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { usePhysiotherapistsQuery } from "../../../api/graphql";
 import { PhysiotherapistBanner } from "../components/PhysiotherapistBanner";
 
 export const PatientHomeView = () => {
   const { data } = usePhysiotherapistsQuery();
+  const [adress, setAdress] = useState("");
+
+  const physiotherapists =
+    data?.physiotherapists.filter((physio) =>
+      physio.adress?.includes(adress)
+    ) ?? [];
 
   return (
     <Stack p="20px" spacing={8} minH="100vh" alignItems="center">
@@ -25,11 +31,16 @@ export const PatientHomeView = () => {
               pointerEvents="none"
               children={<SearchIcon color="gray.300" />}
             />
-            <Input size="sm" placeholder="Kraków..." />
+            <Input
+              size="sm"
+              placeholder="Kraków..."
+              value={adress}
+              onChange={(e) => setAdress(e.target.value)}
+            />
           </InputGroup>
         </Box>
       </Flex>
-      {data?.physiotherapists.map((physiotherapist) => (
+      {physiotherapists.map((physiotherapist) => (
         <PhysiotherapistBanner
           key={physiotherapist.id}
           physiotherapist={physiotherapist}

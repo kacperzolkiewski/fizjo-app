@@ -1,15 +1,25 @@
+import { useUserData } from "@nhost/react";
 import { useRouter } from "next/router";
 import React from "react";
-import { MessagesFeed } from "../components/MessagesFeed";
+import { PatientMessagesFeed } from "../components/PatientMessagesFeed";
+import { PhysiotherapistMessagesFeed } from "../components/PhysiotherapistMessagesFeed";
 import { MessengerView } from "./MessengerView";
 
 export const UserMessagesView = () => {
   const { query } = useRouter();
   const { userId }: { userId?: string } = query;
+  const data = useUserData();
+  const isPatient = data?.metadata.isPatient;
 
   return (
     <MessengerView>
-      {typeof userId === "string" ? <MessagesFeed userId={userId} /> : null}
+      {userId ? (
+        isPatient ? (
+          <PatientMessagesFeed physiotherapistId={userId} />
+        ) : (
+          <PhysiotherapistMessagesFeed patientId={userId} />
+        )
+      ) : null}
     </MessengerView>
   );
 };

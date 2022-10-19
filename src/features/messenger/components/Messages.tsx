@@ -1,12 +1,14 @@
 import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
+import { UserMessagesQuery } from "../api/graphql";
 import { Message } from "./Message";
 
 interface MessagesProps {
-  messages: { message: string; userId: string }[];
+  messages: UserMessagesQuery["messages"];
+  createdBy?: string;
 }
 
-export const Messages = ({ messages }: MessagesProps) => {
+export const Messages = ({ messages, createdBy }: MessagesProps) => {
   const messagesEndRef: React.LegacyRef<HTMLDivElement> = useRef(null);
 
   const scrollToBottom = () => {
@@ -19,21 +21,13 @@ export const Messages = ({ messages }: MessagesProps) => {
 
   return (
     <Flex p="20px" pb="50px" flexDir="column" justifyContent="flex-end">
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={false} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={false} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={false} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={false} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={false} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
-      <Message me={true} message="Nowa wiadomość" />
+      {messages.map((message) => (
+        <Message
+          key={message.id}
+          message={message.message}
+          me={message.created_by === createdBy}
+        />
+      ))}
       <Flex ref={messagesEndRef} />
     </Flex>
   );

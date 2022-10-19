@@ -6477,196 +6477,202 @@ export type Visits_Updates = {
   where: Visits_Bool_Exp;
 };
 
-export type UpdatePatientMutationVariables = Exact<{
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  pesel?: InputMaybe<Scalars['String']>;
-  phone?: InputMaybe<Scalars['String']>;
-  surname?: InputMaybe<Scalars['String']>;
+export type CreateMessageMutationVariables = Exact<{
+  message?: InputMaybe<Scalars['String']>;
+  physiotherapist_id?: InputMaybe<Scalars['uuid']>;
+  patient_id?: InputMaybe<Scalars['uuid']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  created_by?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type UpdatePatientMutation = { __typename?: 'mutation_root', update_patients_by_pk?: { __typename?: 'patients', id: any } | null };
+export type CreateMessageMutation = { __typename?: 'mutation_root', insert_messages_one?: { __typename?: 'messages', id: any } | null };
 
-export type UpdatePatientEmailMutationVariables = Exact<{
-  userId?: InputMaybe<Scalars['uuid']>;
-  email?: InputMaybe<Scalars['citext']>;
+export type PatientContactsQueryVariables = Exact<{
+  patient_id?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type UpdatePatientEmailMutation = { __typename?: 'mutation_root', updateUser?: { __typename?: 'users', email?: any | null } | null };
+export type PatientContactsQuery = { __typename?: 'query_root', physiotherapists: Array<{ __typename?: 'physiotherapists', name: string, surname: string, id: any }> };
 
-export type CreatePatientMutationVariables = Exact<{
-  name?: InputMaybe<Scalars['String']>;
-  pesel?: InputMaybe<Scalars['String']>;
-  phone?: InputMaybe<Scalars['String']>;
-  surname?: InputMaybe<Scalars['String']>;
-  user_id?: InputMaybe<Scalars['uuid']>;
+export type PhysiotherapistContactsQueryVariables = Exact<{
+  physiotherapist_id?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type CreatePatientMutation = { __typename?: 'mutation_root', insert_patients_one?: { __typename?: 'patients', id: any } | null };
+export type PhysiotherapistContactsQuery = { __typename?: 'query_root', patients: Array<{ __typename?: 'patients', id: any, name: string, surname: string }> };
 
-export type PatientByUserIdQueryVariables = Exact<{
-  user_id?: InputMaybe<Scalars['uuid']>;
+export type UserMessagesQueryVariables = Exact<{
+  physiotherapist_id?: InputMaybe<Scalars['uuid']>;
+  patient_id?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type PatientByUserIdQuery = { __typename?: 'query_root', patients: Array<{ __typename?: 'patients', id: any, name: string, pesel: string, surname: string, phone: string }> };
+export type UserMessagesQuery = { __typename?: 'query_root', messages: Array<{ __typename?: 'messages', id: any, created_at: any, message: string, patient_id?: any | null, physiotherapist_id?: any | null, created_by?: any | null }> };
 
 
-export const UpdatePatientDocument = gql`
-    mutation updatePatient($id: uuid = "", $name: String = "", $pesel: String = "", $phone: String = "", $surname: String = "") {
-  update_patients_by_pk(
-    pk_columns: {id: $id}
-    _set: {name: $name, pesel: $pesel, phone: $phone, surname: $surname}
+export const CreateMessageDocument = gql`
+    mutation createMessage($message: String = "", $physiotherapist_id: uuid = "", $patient_id: uuid = "", $created_at: timestamptz = "", $created_by: uuid = "") {
+  insert_messages_one(
+    object: {message: $message, physiotherapist_id: $physiotherapist_id, patient_id: $patient_id, created_at: $created_at, created_by: $created_by}
   ) {
     id
   }
 }
     `;
-export type UpdatePatientMutationFn = Apollo.MutationFunction<UpdatePatientMutation, UpdatePatientMutationVariables>;
+export type CreateMessageMutationFn = Apollo.MutationFunction<CreateMessageMutation, CreateMessageMutationVariables>;
 
 /**
- * __useUpdatePatientMutation__
+ * __useCreateMessageMutation__
  *
- * To run a mutation, you first call `useUpdatePatientMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdatePatientMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMessageMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updatePatientMutation, { data, loading, error }] = useUpdatePatientMutation({
+ * const [createMessageMutation, { data, loading, error }] = useCreateMessageMutation({
  *   variables: {
- *      id: // value for 'id'
- *      name: // value for 'name'
- *      pesel: // value for 'pesel'
- *      phone: // value for 'phone'
- *      surname: // value for 'surname'
+ *      message: // value for 'message'
+ *      physiotherapist_id: // value for 'physiotherapist_id'
+ *      patient_id: // value for 'patient_id'
+ *      created_at: // value for 'created_at'
+ *      created_by: // value for 'created_by'
  *   },
  * });
  */
-export function useUpdatePatientMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePatientMutation, UpdatePatientMutationVariables>) {
+export function useCreateMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateMessageMutation, CreateMessageMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdatePatientMutation, UpdatePatientMutationVariables>(UpdatePatientDocument, options);
+        return Apollo.useMutation<CreateMessageMutation, CreateMessageMutationVariables>(CreateMessageDocument, options);
       }
-export type UpdatePatientMutationHookResult = ReturnType<typeof useUpdatePatientMutation>;
-export type UpdatePatientMutationResult = Apollo.MutationResult<UpdatePatientMutation>;
-export type UpdatePatientMutationOptions = Apollo.BaseMutationOptions<UpdatePatientMutation, UpdatePatientMutationVariables>;
-export const UpdatePatientEmailDocument = gql`
-    mutation UpdatePatientEmail($userId: uuid = "", $email: citext = "") {
-  updateUser(pk_columns: {id: $userId}, _set: {email: $email}) {
-    email
-  }
-}
-    `;
-export type UpdatePatientEmailMutationFn = Apollo.MutationFunction<UpdatePatientEmailMutation, UpdatePatientEmailMutationVariables>;
-
-/**
- * __useUpdatePatientEmailMutation__
- *
- * To run a mutation, you first call `useUpdatePatientEmailMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdatePatientEmailMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updatePatientEmailMutation, { data, loading, error }] = useUpdatePatientEmailMutation({
- *   variables: {
- *      userId: // value for 'userId'
- *      email: // value for 'email'
- *   },
- * });
- */
-export function useUpdatePatientEmailMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePatientEmailMutation, UpdatePatientEmailMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdatePatientEmailMutation, UpdatePatientEmailMutationVariables>(UpdatePatientEmailDocument, options);
-      }
-export type UpdatePatientEmailMutationHookResult = ReturnType<typeof useUpdatePatientEmailMutation>;
-export type UpdatePatientEmailMutationResult = Apollo.MutationResult<UpdatePatientEmailMutation>;
-export type UpdatePatientEmailMutationOptions = Apollo.BaseMutationOptions<UpdatePatientEmailMutation, UpdatePatientEmailMutationVariables>;
-export const CreatePatientDocument = gql`
-    mutation createPatient($name: String = "", $pesel: String = "", $phone: String = "", $surname: String = "", $user_id: uuid = "") {
-  insert_patients_one(
-    object: {pesel: $pesel, name: $name, phone: $phone, surname: $surname, user_id: $user_id}
-  ) {
-    id
-  }
-}
-    `;
-export type CreatePatientMutationFn = Apollo.MutationFunction<CreatePatientMutation, CreatePatientMutationVariables>;
-
-/**
- * __useCreatePatientMutation__
- *
- * To run a mutation, you first call `useCreatePatientMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreatePatientMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createPatientMutation, { data, loading, error }] = useCreatePatientMutation({
- *   variables: {
- *      name: // value for 'name'
- *      pesel: // value for 'pesel'
- *      phone: // value for 'phone'
- *      surname: // value for 'surname'
- *      user_id: // value for 'user_id'
- *   },
- * });
- */
-export function useCreatePatientMutation(baseOptions?: Apollo.MutationHookOptions<CreatePatientMutation, CreatePatientMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreatePatientMutation, CreatePatientMutationVariables>(CreatePatientDocument, options);
-      }
-export type CreatePatientMutationHookResult = ReturnType<typeof useCreatePatientMutation>;
-export type CreatePatientMutationResult = Apollo.MutationResult<CreatePatientMutation>;
-export type CreatePatientMutationOptions = Apollo.BaseMutationOptions<CreatePatientMutation, CreatePatientMutationVariables>;
-export const PatientByUserIdDocument = gql`
-    query PatientByUserId($user_id: uuid = "") {
-  patients(where: {user_id: {_eq: $user_id}}) {
-    id
+export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
+export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
+export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
+export const PatientContactsDocument = gql`
+    query PatientContacts($patient_id: uuid = "") {
+  physiotherapists(where: {messages: {patient_id: {_eq: $patient_id}}}) {
     name
-    pesel
     surname
-    phone
+    id
   }
 }
     `;
 
 /**
- * __usePatientByUserIdQuery__
+ * __usePatientContactsQuery__
  *
- * To run a query within a React component, call `usePatientByUserIdQuery` and pass it any options that fit your needs.
- * When your component renders, `usePatientByUserIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `usePatientContactsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePatientContactsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = usePatientByUserIdQuery({
+ * const { data, loading, error } = usePatientContactsQuery({
  *   variables: {
- *      user_id: // value for 'user_id'
+ *      patient_id: // value for 'patient_id'
  *   },
  * });
  */
-export function usePatientByUserIdQuery(baseOptions?: Apollo.QueryHookOptions<PatientByUserIdQuery, PatientByUserIdQueryVariables>) {
+export function usePatientContactsQuery(baseOptions?: Apollo.QueryHookOptions<PatientContactsQuery, PatientContactsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PatientByUserIdQuery, PatientByUserIdQueryVariables>(PatientByUserIdDocument, options);
+        return Apollo.useQuery<PatientContactsQuery, PatientContactsQueryVariables>(PatientContactsDocument, options);
       }
-export function usePatientByUserIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PatientByUserIdQuery, PatientByUserIdQueryVariables>) {
+export function usePatientContactsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PatientContactsQuery, PatientContactsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PatientByUserIdQuery, PatientByUserIdQueryVariables>(PatientByUserIdDocument, options);
+          return Apollo.useLazyQuery<PatientContactsQuery, PatientContactsQueryVariables>(PatientContactsDocument, options);
         }
-export type PatientByUserIdQueryHookResult = ReturnType<typeof usePatientByUserIdQuery>;
-export type PatientByUserIdLazyQueryHookResult = ReturnType<typeof usePatientByUserIdLazyQuery>;
-export type PatientByUserIdQueryResult = Apollo.QueryResult<PatientByUserIdQuery, PatientByUserIdQueryVariables>;
-export function refetchPatientByUserIdQuery(variables?: PatientByUserIdQueryVariables) {
-      return { query: PatientByUserIdDocument, variables: variables }
+export type PatientContactsQueryHookResult = ReturnType<typeof usePatientContactsQuery>;
+export type PatientContactsLazyQueryHookResult = ReturnType<typeof usePatientContactsLazyQuery>;
+export type PatientContactsQueryResult = Apollo.QueryResult<PatientContactsQuery, PatientContactsQueryVariables>;
+export function refetchPatientContactsQuery(variables?: PatientContactsQueryVariables) {
+      return { query: PatientContactsDocument, variables: variables }
+    }
+export const PhysiotherapistContactsDocument = gql`
+    query PhysiotherapistContacts($physiotherapist_id: uuid = "") {
+  patients(where: {messages: {physiotherapist_id: {_eq: $physiotherapist_id}}}) {
+    id
+    name
+    surname
+  }
+}
+    `;
+
+/**
+ * __usePhysiotherapistContactsQuery__
+ *
+ * To run a query within a React component, call `usePhysiotherapistContactsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePhysiotherapistContactsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePhysiotherapistContactsQuery({
+ *   variables: {
+ *      physiotherapist_id: // value for 'physiotherapist_id'
+ *   },
+ * });
+ */
+export function usePhysiotherapistContactsQuery(baseOptions?: Apollo.QueryHookOptions<PhysiotherapistContactsQuery, PhysiotherapistContactsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PhysiotherapistContactsQuery, PhysiotherapistContactsQueryVariables>(PhysiotherapistContactsDocument, options);
+      }
+export function usePhysiotherapistContactsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PhysiotherapistContactsQuery, PhysiotherapistContactsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PhysiotherapistContactsQuery, PhysiotherapistContactsQueryVariables>(PhysiotherapistContactsDocument, options);
+        }
+export type PhysiotherapistContactsQueryHookResult = ReturnType<typeof usePhysiotherapistContactsQuery>;
+export type PhysiotherapistContactsLazyQueryHookResult = ReturnType<typeof usePhysiotherapistContactsLazyQuery>;
+export type PhysiotherapistContactsQueryResult = Apollo.QueryResult<PhysiotherapistContactsQuery, PhysiotherapistContactsQueryVariables>;
+export function refetchPhysiotherapistContactsQuery(variables?: PhysiotherapistContactsQueryVariables) {
+      return { query: PhysiotherapistContactsDocument, variables: variables }
+    }
+export const UserMessagesDocument = gql`
+    query UserMessages($physiotherapist_id: uuid = "", $patient_id: uuid = "") {
+  messages(
+    where: {physiotherapist_id: {_eq: $physiotherapist_id}, patient_id: {_eq: $patient_id}}
+  ) {
+    id
+    created_at
+    message
+    patient_id
+    physiotherapist_id
+    created_by
+  }
+}
+    `;
+
+/**
+ * __useUserMessagesQuery__
+ *
+ * To run a query within a React component, call `useUserMessagesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserMessagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserMessagesQuery({
+ *   variables: {
+ *      physiotherapist_id: // value for 'physiotherapist_id'
+ *      patient_id: // value for 'patient_id'
+ *   },
+ * });
+ */
+export function useUserMessagesQuery(baseOptions?: Apollo.QueryHookOptions<UserMessagesQuery, UserMessagesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserMessagesQuery, UserMessagesQueryVariables>(UserMessagesDocument, options);
+      }
+export function useUserMessagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserMessagesQuery, UserMessagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserMessagesQuery, UserMessagesQueryVariables>(UserMessagesDocument, options);
+        }
+export type UserMessagesQueryHookResult = ReturnType<typeof useUserMessagesQuery>;
+export type UserMessagesLazyQueryHookResult = ReturnType<typeof useUserMessagesLazyQuery>;
+export type UserMessagesQueryResult = Apollo.QueryResult<UserMessagesQuery, UserMessagesQueryVariables>;
+export function refetchUserMessagesQuery(variables?: UserMessagesQueryVariables) {
+      return { query: UserMessagesDocument, variables: variables }
     }

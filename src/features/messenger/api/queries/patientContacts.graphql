@@ -1,0 +1,7 @@
+query PatientContacts($patient_id: uuid = "") {
+  physiotherapists(where: { messages: { patient_id: { _eq: $patient_id } } }) {
+    name
+    surname
+    id
+  }
+}

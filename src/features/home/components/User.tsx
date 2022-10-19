@@ -5,25 +5,25 @@ import React from "react";
 import { useRouter } from "next/router";
 
 interface UserProps {
-  name: string;
-  surname: string;
+  name?: string;
+  surname?: string;
+  w: string;
   image?: string;
+  onClick?: () => void;
 }
 
-export const User = ({ name, surname }: UserProps) => {
-  const { push } = useRouter();
-
+export const User = ({ name, surname, w, onClick }: UserProps) => {
   return (
     <Button
       bg="white"
       pl="20px"
       alignItems="center"
-      w="330px"
+      w={w}
       minH="65px"
       variant="outline"
       justifyContent="flex-start"
       onClick={() => {
-        push(`/messenger/${1}`);
+        onClick?.();
       }}
     >
       <Image src={AvatarImage} width="50px" height="50px" />

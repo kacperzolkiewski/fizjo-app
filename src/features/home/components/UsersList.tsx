@@ -10,9 +10,9 @@ export const UsersList = ({ users }: UsersListProps) => {
   //   return users.map((user) => <User name={user.name} surname={user.surname} />);
   return (
     <VStack mt="10px">
+      {/* <User name="kacper" surname="zolkiewski" />
       <User name="kacper" surname="zolkiewski" />
-      <User name="kacper" surname="zolkiewski" />
-      <User name="kacper" surname="zolkiewski" />
+      <User name="kacper" surname="zolkiewski" /> */}
     </VStack>
   );
 };

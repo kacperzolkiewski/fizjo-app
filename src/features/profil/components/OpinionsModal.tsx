@@ -65,6 +65,7 @@ export const OpinionsModal = ({
                   my="10px"
                   onClick={() => {
                     addOpinion(opinion);
+                    setOpinion("");
                     refetch();
                   }}
                 >

@@ -27,3 +27,11 @@ generates:
       - "typescript-react-apollo"
     config:
       withRefetchFn: true
+  src/features/messenger/api/graphql.ts:
+    documents: "src/features/messenger/api/**/*.graphql"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withRefetchFn: true

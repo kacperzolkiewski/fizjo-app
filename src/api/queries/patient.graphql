@@ -1,0 +1,11 @@
+query Patient($id: uuid = "") {
+  patients_by_pk(id: $id) {
+    name
+    phone
+    pesel
+    surname
+    user {
+      email
+    }
+  }
+}
