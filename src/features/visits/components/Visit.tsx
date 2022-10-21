@@ -2,16 +2,17 @@ import { Td, Tr } from "@chakra-ui/react";
 import React from "react";
 import { VisitMenu } from "./VisitsMenu";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface VisitProps {
-  start_timestamp?: string;
-  end_timestamp?: string;
-  visit_type?: string;
+  startTimestamp?: string;
+  endTimestamp?: string;
+  visitType?: string;
   price?: string;
   physioterapists?: string;
   id?: string;
 }
 
-export const Visit = () => {
+export const Visit = (): JSX.Element => {
   return (
     <Tr h="48px">
       <Td>22.09.2022</Td>

@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormField } from "../../../components/FormField";
 import { Patient } from "../../../utilities/types";
+import React from "react";
 import { editPatientSchema } from "../utilities/schemas";
 
 export const EditPatientModal = ({
@@ -25,7 +26,7 @@ export const EditPatientModal = ({
   isOpen: boolean;
   onClose: () => void;
   onEditUser: () => void;
-}) => {
+}): JSX.Element => {
   const {
     register,
     handleSubmit,
@@ -46,6 +47,7 @@ export const EditPatientModal = ({
         <ModalHeader textAlign="center">Edytuj dane</ModalHeader>
         <ModalBody px="0">
           <form
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onSubmit={handleSubmit(submitForm)}
             style={{
               display: "flex",

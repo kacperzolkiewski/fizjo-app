@@ -1,9 +1,8 @@
-import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
 import { Visit } from "./Visit";
-import { VisitMenu } from "./VisitsMenu";
 
-export const VisitsTable = () => {
+export const VisitsTable = (): JSX.Element => {
   return (
     <Table
       bg="white"

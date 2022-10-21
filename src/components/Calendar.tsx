@@ -2,7 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 import { CalendarItem } from "./CalendarItem";
 
-export const Calendar = () => {
+export const Calendar = (): JSX.Element => {
   return (
     <Box h="100%" overflowY="scroll">
       <Heading textAlign="center" fontSize="20px">

@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,7 +15,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
 import * as yup from "yup";
 import { FormField } from "../../../components/FormField";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface CustomEditModalProps {
   property: string;
@@ -32,7 +31,7 @@ export const CustomEditModal = ({
   label,
   schema,
   onEdit,
-}: CustomEditModalProps) => {
+}: CustomEditModalProps): JSX.Element => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [inputValue, setValue] = useState(propertyValue);
   const {
@@ -65,6 +64,7 @@ export const CustomEditModal = ({
           <ModalHeader textAlign="center">Edytuj</ModalHeader>
           <ModalBody px="0" h="70%">
             <form
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onSubmit={handleSubmit(submitForm)}
               style={{
                 display: "flex",

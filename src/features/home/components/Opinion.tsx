@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import { format, parseISO, toDate } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { pl } from "date-fns/locale";
 import Image from "next/image";
 import React from "react";
@@ -11,9 +11,9 @@ interface OpinionProps {
   opinion: ArrayElement<OpinionsQuery["opinions"]>;
 }
 
-export const Opinion = ({ opinion }: OpinionProps) => {
-  const { comment, created_at, patient, id } = opinion;
-  const formattedDate = format(parseISO(created_at), "dd MMMM yyyy", {
+export const Opinion = ({ opinion }: OpinionProps): JSX.Element => {
+  const { comment, created_at: createdAt, patient } = opinion;
+  const formattedDate = format(parseISO(createdAt), "dd MMMM yyyy", {
     locale: pl,
   });
 
@@ -22,7 +22,7 @@ export const Opinion = ({ opinion }: OpinionProps) => {
       <Flex alignItems="center">
         <Image src={AvatarImage} width="60px" height="60px" />
         <Heading fontSize="20px" ml="15px">
-          {`${patient?.name} ${patient?.surname}`}
+          {`${patient?.name ?? ""} ${patient?.surname ?? ""}`}
         </Heading>
       </Flex>
       <Text ml="75px">{comment}</Text>

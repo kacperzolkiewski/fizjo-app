@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
+import React from "react";
 
 export const SignOutModal = ({
   isOpen,
@@ -17,7 +18,7 @@ export const SignOutModal = ({
   isOpen: boolean;
   onClose: () => void;
   onSignOut: () => void;
-}) => (
+}): JSX.Element => (
   <Modal isOpen={isOpen} onClose={onClose}>
     <ModalOverlay />
     <ModalContent>

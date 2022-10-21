@@ -11,8 +11,8 @@ import {
   ModalOverlay,
   VStack,
 } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { usePhysiotherapistsQuery } from "../../../api/graphql";
 import { User } from "../../home/components/User";
 
@@ -22,7 +22,7 @@ export const NewPatientMessageModal = ({
 }: {
   isOpen: boolean;
   onClose: () => void;
-}) => {
+}): JSX.Element => {
   const { push } = useRouter();
   const [name, setName] = useState("");
   const { data } = usePhysiotherapistsQuery();
@@ -51,7 +51,7 @@ export const NewPatientMessageModal = ({
                 surname={physio.surname}
                 w={"100%"}
                 onClick={() => {
-                  push(`/messenger/${physio.id}`);
+                  void push(`/messenger/${String(physio.id)}`);
                   onClose();
                 }}
               />

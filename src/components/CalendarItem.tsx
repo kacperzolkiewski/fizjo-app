@@ -6,7 +6,7 @@ interface CalendarItemProps {
   date: string;
 }
 
-export const CalendarItem = ({ date }: CalendarItemProps) => {
+export const CalendarItem = ({ date }: CalendarItemProps): JSX.Element => {
   return (
     <>
       <Box mt="10px">

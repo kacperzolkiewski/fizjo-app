@@ -6,14 +6,13 @@ import {
   MenuItem,
   MenuList,
   useDisclosure,
-  useToast,
 } from "@chakra-ui/react";
 import { VisitDeleteModal } from "./DeleteVisitModal";
+import React from "react";
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const VisitMenu = ({ rowId }: { rowId?: string }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
-
   return (
     <Menu>
       <MenuButton

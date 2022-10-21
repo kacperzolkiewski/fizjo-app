@@ -8,10 +8,13 @@ interface MessagesProps {
   createdBy?: string;
 }
 
-export const Messages = ({ messages, createdBy }: MessagesProps) => {
+export const Messages = ({
+  messages,
+  createdBy,
+}: MessagesProps): JSX.Element => {
   const messagesEndRef: React.LegacyRef<HTMLDivElement> = useRef(null);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = (): void => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 

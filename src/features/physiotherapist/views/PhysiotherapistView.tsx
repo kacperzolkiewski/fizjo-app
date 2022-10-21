@@ -7,7 +7,6 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { isError, isUndefined } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -20,12 +19,12 @@ import { usePhysiotherapistQuery } from "../api/graphql";
 import { useCreateOpinionMutation } from "../../../api/graphql";
 import { usePatient } from "../../../utilities/usePatient";
 
-export const PhysiotherapistView = () => {
+export const PhysiotherapistView = (): JSX.Element => {
   const router = useRouter();
   const showToast = useToast();
   const { id } = router.query;
-  const { id: patient_id } = usePatient();
-  const { data } = usePhysiotherapistQuery({ variables: { id: id } });
+  const { id: patientId } = usePatient();
+  const { data } = usePhysiotherapistQuery({ variables: { id } });
   const physiotherapist = data?.physiotherapists_by_pk;
   const [createOpininon] = useCreateOpinionMutation();
 
@@ -40,7 +39,7 @@ export const PhysiotherapistView = () => {
         position="relative"
       >
         <Heading position="absolute" top="10" textAlign="center">
-          {`${physiotherapist?.name} ${physiotherapist?.surname}`}
+          {`${physiotherapist?.name ?? ""} ${physiotherapist?.surname ?? ""}`}
         </Heading>
         <VStack spacing={4}>
           <ProfilPropertyBox
@@ -61,7 +60,7 @@ export const PhysiotherapistView = () => {
         </Flex>
         <VStack spacing={4}>
           <OpinionsModal
-            physiotherapist_id={String(id)}
+            physiotherapistId={String(id)}
             addOpinion={(comment: string) => {
               if (comment.length < 20) {
                 showToast({
@@ -73,10 +72,10 @@ export const PhysiotherapistView = () => {
               void createOpininon({
                 refetchQueries: ["OpinionsQuery"],
                 variables: {
-                  comment: comment,
+                  comment,
                   physiotherapist_id: id,
                   created_at: new Date(),
-                  patient_id: patient_id,
+                  patient_id: patientId,
                 },
                 onCompleted() {
                   showToast({
@@ -84,8 +83,7 @@ export const PhysiotherapistView = () => {
                     title: "Pomyślnie dodano opinię",
                   });
                 },
-                onError(error) {
-                  console.log(error);
+                onError() {
                   showToast({
                     status: "error",
                     title: "Dodanie opinii nie powiodło się, spróbuj ponownie",
@@ -94,7 +92,7 @@ export const PhysiotherapistView = () => {
               });
             }}
           />
-          <VisitTypesModal physiotherapist_id={String(id)} />
+          <VisitTypesModal physiotherapistId={String(id)} />
           <ProfilPropertyBox
             label="O mnie"
             propertyValue={physiotherapist?.aboutMe}

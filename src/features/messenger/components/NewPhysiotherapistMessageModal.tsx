@@ -12,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { usePatientsQuery } from "../../../api/graphql";
 import { User } from "../../home/components/User";
 
@@ -22,7 +22,7 @@ export const NewPhysiotherapistMessageModal = ({
 }: {
   isOpen: boolean;
   onClose: () => void;
-}) => {
+}): JSX.Element => {
   const { push } = useRouter();
   const [name, setName] = useState("");
   const { data } = usePatientsQuery();
@@ -51,7 +51,7 @@ export const NewPhysiotherapistMessageModal = ({
                 surname={patient.surname}
                 w={"100%"}
                 onClick={() => {
-                  push(`/messenger/${patient.id}`);
+                  void push(`/messenger/${String(patient.id)}`);
                   onClose();
                 }}
               />

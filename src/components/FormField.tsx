@@ -5,7 +5,7 @@ import {
   Input,
   InputProps,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import {
   FieldError,
   FieldErrorsImpl,
@@ -34,13 +34,13 @@ export const FormField = ({
   w,
   placeholder,
   ...props
-}: InputProps & FormFieldProps) => {
+}: InputProps & FormFieldProps): JSX.Element => {
   return (
     <FormControl isInvalid={Boolean(error)} w={w} mt="15px">
       <FormLabel htmlFor={props.name}>{label}</FormLabel>
       <Input
         type={props.type}
-        placeholder={placeholder || `...`}
+        placeholder={placeholder ?? `...`}
         {...register(props.name)}
         value={value}
         onChange={onChange}

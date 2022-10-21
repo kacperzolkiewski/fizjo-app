@@ -4,9 +4,13 @@ import React, { ReactNode } from "react";
 import { PatientSidebar } from "../components/PatientSidebar";
 import { PhysiotherapistSidebar } from "../components/PhysiotherapistSidebar";
 
-export const MessengerView = ({ children }: { children?: ReactNode }) => {
+export const MessengerView = ({
+  children,
+}: {
+  children?: ReactNode;
+}): JSX.Element => {
   const data = useUserData();
-  const isPatient = data?.metadata.isPatient;
+  const isPatient = data?.metadata.isPatient as boolean;
 
   return (
     <Flex h="100vh" pl="20px">

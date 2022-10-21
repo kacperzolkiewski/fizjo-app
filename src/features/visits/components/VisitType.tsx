@@ -1,5 +1,5 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Box, Flex, ListIcon, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface VisitTypeProps {
@@ -9,7 +9,11 @@ interface VisitTypeProps {
   deleteIcon: boolean;
 }
 
-export const VisitType = ({ name, price, deleteIcon }: VisitTypeProps) => {
+export const VisitType = ({
+  name,
+  price,
+  deleteIcon,
+}: VisitTypeProps): JSX.Element => {
   return (
     <Flex
       h="40px"

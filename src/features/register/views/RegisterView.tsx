@@ -8,7 +8,11 @@ import { useSignUpEmailPassword } from "@nhost/react";
 import { useCreatePhysiotherapistMutation } from "../../physiotherapist/api/graphql";
 import { useCreatePatientMutation } from "../../profil/api/graphql";
 
-export const RegisterView = ({ isPatient }: { isPatient: boolean }) => {
+export const RegisterView = ({
+  isPatient,
+}: {
+  isPatient: boolean;
+}): JSX.Element => {
   const {
     register,
     handleSubmit,
@@ -30,7 +34,7 @@ export const RegisterView = ({ isPatient }: { isPatient: boolean }) => {
       {
         allowedRoles: ["user"],
         metadata: {
-          isPatient: isPatient,
+          isPatient,
         },
       }
     );
@@ -43,23 +47,22 @@ export const RegisterView = ({ isPatient }: { isPatient: boolean }) => {
         isClosable: true,
       });
     } else {
-      {
-        isPatient
-          ? await createPatient({
-              variables: {
-                name: data.name,
-                surname: data.surname,
-                user_id: user?.id,
-              },
-            })
-          : await createPhysiotherapist({
-              variables: {
-                name: data.name,
-                surname: data.surname,
-                user_id: user?.id,
-              },
-            });
-      }
+      isPatient
+        ? await createPatient({
+            variables: {
+              name: data.name,
+              surname: data.surname,
+              user_id: user?.id,
+            },
+          })
+        : await createPhysiotherapist({
+            variables: {
+              name: data.name,
+              surname: data.surname,
+              user_id: user?.id,
+            },
+          });
+
       showToast({
         title: "Pomyślnie zarejestrowano",
         status: "success",
@@ -72,6 +75,7 @@ export const RegisterView = ({ isPatient }: { isPatient: boolean }) => {
   return (
     <Flex alignItems="center" w="full" justifyContent="center">
       <form
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={handleSubmit(submitForm)}
         style={{
           display: "flex",

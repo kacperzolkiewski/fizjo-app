@@ -1,7 +1,7 @@
 import { Button, Flex, List, ListItem, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
-export const PhysiotherapistVisit = () => {
+export const PhysiotherapistVisit = (): JSX.Element => {
   return (
     <Flex bg="white" p="20px" minW="350px" rounded={14} flexDir="column">
       <VStack

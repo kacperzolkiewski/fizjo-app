@@ -10,6 +10,7 @@ import {
   ModalOverlay,
   Text,
 } from "@chakra-ui/react";
+import React from "react";
 
 export const ReserveVisitModal = ({
   date,
@@ -23,7 +24,7 @@ export const ReserveVisitModal = ({
   isOpen: boolean;
   onClose: () => void;
   onReserveVisit: () => void;
-}) => (
+}): JSX.Element => (
   <Modal isOpen={isOpen} onClose={onClose} isCentered>
     <ModalOverlay />
     <ModalContent

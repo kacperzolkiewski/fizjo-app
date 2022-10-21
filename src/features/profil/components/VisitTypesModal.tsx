@@ -11,7 +11,6 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
-  useToast,
   VStack,
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,20 +22,21 @@ import { VisitType } from "../../visits/components/VisitType";
 import { useVisitTypesQuery } from "../../physiotherapist/api/graphql";
 import { AddIcon } from "@chakra-ui/icons";
 import { isUndefined } from "lodash";
+import React from "react";
 
 interface VisitTypesModalProps {
   onCreateVisitType?: (name: string, price: string) => void;
-  physiotherapist_id?: string;
+  physiotherapistId?: string;
 }
 
 export const VisitTypesModal = ({
   onCreateVisitType,
-  physiotherapist_id,
-}: VisitTypesModalProps) => {
+  physiotherapistId,
+}: VisitTypesModalProps): JSX.Element => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const { data } = useVisitTypesQuery({
     variables: {
-      physiotherapist_id: physiotherapist_id,
+      physiotherapist_id: physiotherapistId,
     },
   });
   const visitTypes = data?.visit_types;
@@ -46,11 +46,11 @@ export const VisitTypesModal = ({
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: yupResolver(USER_SCHEMAS["visitTypesSchema"]),
+    resolver: yupResolver(USER_SCHEMAS.visitTypesSchema),
   });
 
   const submitForm: SubmitHandler<FieldValues> = async (data) => {
-    onCreateVisitType && onCreateVisitType(data.name, data.price);
+    onCreateVisitType?.(data.name, data.price);
   };
 
   return (
@@ -66,8 +66,9 @@ export const VisitTypesModal = ({
           <ModalCloseButton _hover={{ bg: "none" }} m="20px" />
           <ModalHeader textAlign="center">Typy wizyt</ModalHeader>
           <ModalBody px="0" h="70%">
-            {onCreateVisitType ? (
+            {onCreateVisitType != null ? (
               <form
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
                 onSubmit={handleSubmit(submitForm)}
                 style={{
                   display: "flex",
@@ -85,7 +86,7 @@ export const VisitTypesModal = ({
                   <FormField
                     name="name"
                     label={"Typ wizyty"}
-                    error={errors["name"]?.message}
+                    error={errors.name?.message}
                     register={register}
                     w="65%"
                   />
@@ -93,7 +94,7 @@ export const VisitTypesModal = ({
                     w="30%"
                     name="price"
                     label={"Cena"}
-                    error={errors["price"]?.message}
+                    error={errors.price?.message}
                     register={register}
                   />
                   <Button

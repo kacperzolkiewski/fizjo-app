@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { usePhysiotherapistsQuery } from "../../../api/graphql";
 import { PhysiotherapistBanner } from "../components/PhysiotherapistBanner";
 
-export const PatientHomeView = () => {
+export const PatientHomeView = (): JSX.Element => {
   const { data } = usePhysiotherapistsQuery();
   const [adress, setAdress] = useState("");
 
@@ -27,10 +27,9 @@ export const PatientHomeView = () => {
         <Heading fontSize="40px">Fizjoterapeuci</Heading>
         <Box w="340px" mt="20px">
           <InputGroup bg="white">
-            <InputLeftElement
-              pointerEvents="none"
-              children={<SearchIcon color="gray.300" />}
-            />
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color="gray.300" />
+            </InputLeftElement>
             <Input
               size="sm"
               placeholder="Kraków..."

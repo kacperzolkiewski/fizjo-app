@@ -2,7 +2,6 @@ import { Button, Text } from "@chakra-ui/react";
 import AvatarImage from "../../../assets/awatar.png";
 import Image from "next/image";
 import React from "react";
-import { useRouter } from "next/router";
 
 interface UserProps {
   name?: string;
@@ -12,7 +11,7 @@ interface UserProps {
   onClick?: () => void;
 }
 
-export const User = ({ name, surname, w, onClick }: UserProps) => {
+export const User = ({ name, surname, w, onClick }: UserProps): JSX.Element => {
   return (
     <Button
       bg="white"

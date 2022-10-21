@@ -19,7 +19,7 @@ export const PatientMessagesFeed = ({
   physiotherapistId,
 }: {
   physiotherapistId: string;
-}) => {
+}): JSX.Element => {
   const [newMessage, setNewMessage] = useState("");
   const { data } = usePhysiotherapistQuery({
     variables: { id: physiotherapistId },
@@ -39,7 +39,9 @@ export const PatientMessagesFeed = ({
     <Flex pl="20px" w="100%" flexDir="column" justifyContent="space-between">
       <HStack borderBottom="1px solid #EDF2F7" bg="white" h="15%" pl="40px">
         <Image src={AvatarImage} width="90px" height="90px" />
-        <Heading>{`${physiotherapist?.name} ${physiotherapist?.surname}`}</Heading>
+        <Heading>{`${physiotherapist?.name ?? ""} ${
+          physiotherapist?.surname ?? ""
+        }`}</Heading>
       </HStack>
       <Flex
         flexDir="column"
@@ -72,7 +74,7 @@ export const PatientMessagesFeed = ({
                     created_by: patientId,
                   },
                   onCompleted() {
-                    refetch();
+                    void refetch();
                     setNewMessage("");
                   },
                 });

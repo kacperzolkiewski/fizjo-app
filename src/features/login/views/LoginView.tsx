@@ -6,7 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FormField } from "../../../components/FormField";
 import { loginSchema } from "../utilities/loginSchema";
 
-export const LoginView = () => {
+export const LoginView = (): JSX.Element => {
   const {
     register,
     handleSubmit,
@@ -22,11 +22,13 @@ export const LoginView = () => {
   const disableForm = isLoading || needsEmailVerification || isSubmitting;
 
   const submitForm: SubmitHandler<FieldValues> = async (data) => {
+    console.log(data);
     const { isError, error } = await signInEmailPassword(
       data.email,
       data.password
     );
 
+    console.log("xxx");
     if (isError) {
       showToast({
         title: "Nie udało się zalogować",
@@ -48,6 +50,7 @@ export const LoginView = () => {
   return (
     <Flex alignItems="center" w="full" justifyContent="center">
       <form
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={handleSubmit(submitForm)}
         style={{
           display: "flex",

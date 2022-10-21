@@ -6,7 +6,7 @@ import { User } from "../../home/components/User";
 import { usePatientContactsQuery } from "../api/graphql";
 import { NewPatientMessageModal } from "./NewPatientMessageModal";
 
-export const PatientSidebar = () => {
+export const PatientSidebar = (): JSX.Element => {
   const { push } = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { id, name, surname } = usePatient();
@@ -32,7 +32,7 @@ export const PatientSidebar = () => {
             name={physio.name}
             surname={physio.surname}
             onClick={() => {
-              push(`/messenger/${physio.id}`);
+              void push(`/messenger/${String(physio.id)}`);
             }}
           />
         ))}

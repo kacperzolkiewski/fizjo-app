@@ -12,10 +12,10 @@ import { usePhysiotherapistUpdateMutations } from "../../../utilities/usePhysiot
 import { useUserId } from "@nhost/react";
 import { isUndefined } from "lodash";
 
-export const PhysiotherapistProfile = () => {
+export const PhysiotherapistProfile = (): JSX.Element => {
   const { name, surname, email, adress, aboutMe, phone, id } =
     usePhysiotherapist();
-  const user_id = useUserId();
+  const userId = useUserId();
   const {
     onEditPhone,
     onEditAboutMe,
@@ -48,7 +48,7 @@ export const PhysiotherapistProfile = () => {
             onEdit={(value: string) => {
               void onEditEmail({
                 variables: {
-                  user_id: user_id,
+                  user_id: userId,
                   email: value,
                 },
               });
@@ -62,7 +62,7 @@ export const PhysiotherapistProfile = () => {
             onEdit={(value: string) => {
               void onEditPhone({
                 variables: {
-                  id: id,
+                  id,
                   phone: value,
                 },
               });
@@ -77,7 +77,7 @@ export const PhysiotherapistProfile = () => {
               void onEditAdress({
                 refetchQueries: ["VisitTypesQuery"],
                 variables: {
-                  id: id,
+                  id,
                   adress: value,
                 },
               });
@@ -88,18 +88,18 @@ export const PhysiotherapistProfile = () => {
           <Image src={AvatarImage} width="250px" height="250px" />
         </Flex>
         <VStack spacing={4}>
-          <OpinionsModal physiotherapist_id={id} />
+          <OpinionsModal physiotherapistId={id} />
           <VisitTypesModal
             onCreateVisitType={(name: string, price: string) => {
               void onCreateVisitType({
                 variables: {
                   physiotherapist_id: id,
-                  name: name,
-                  price: price,
+                  name,
+                  price,
                 },
               });
             }}
-            physiotherapist_id={id}
+            physiotherapistId={id}
           />
           <CustomEditModal
             label="O mnie"
@@ -109,7 +109,7 @@ export const PhysiotherapistProfile = () => {
             onEdit={(value: string) => {
               void onEditAboutMe({
                 variables: {
-                  id: id,
+                  id,
                   aboutMe: value,
                 },
               });

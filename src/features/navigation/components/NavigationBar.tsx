@@ -9,7 +9,7 @@ import {
 import { useSignOut } from "@nhost/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-
+import React from "react";
 import { SignOutModal } from "./SignOutModal";
 
 const AnimatedFlex = motion(Flex);
@@ -21,10 +21,10 @@ export const NavigationBar = ({
 }: {
   isExpanded: boolean;
   toggleExpanded: () => void;
-}) => {
+}): JSX.Element => {
   const { signOut } = useSignOut();
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const router = useRouter();
+  const { push } = useRouter();
 
   const iconViewboxWidth = "56px";
   const navWidth = "256px";
@@ -70,10 +70,34 @@ export const NavigationBar = ({
         variants={stackVariants}
         animate={currentVariant}
       >
-        <Button onClick={() => router.push("/")}>Strona główna</Button>
-        <Button onClick={() => router.push("/visits")}>Wizyty</Button>
-        <Button onClick={() => router.push("/profil")}>Profil</Button>
-        <Button onClick={() => router.push("/messenger")}>Wiadomości</Button>
+        <Button
+          onClick={() => {
+            void push("/");
+          }}
+        >
+          Strona główna
+        </Button>
+        <Button
+          onClick={() => {
+            void push("/visits");
+          }}
+        >
+          Wizyty
+        </Button>
+        <Button
+          onClick={() => {
+            void push("/profil");
+          }}
+        >
+          Profil
+        </Button>
+        <Button
+          onClick={() => {
+            void push("/messenger");
+          }}
+        >
+          Wiadomości
+        </Button>
       </AnimatedStack>
       <AnimatedStack
         spacing="8px"
@@ -84,7 +108,9 @@ export const NavigationBar = ({
         <SignOutModal
           isOpen={isOpen}
           onClose={onClose}
-          onSignOut={() => void signOut()}
+          onSignOut={() => {
+            void signOut();
+          }}
         />
       </AnimatedStack>
     </AnimatedFlex>

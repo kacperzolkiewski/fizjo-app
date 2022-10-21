@@ -6,7 +6,7 @@ interface MessageProps {
   message: string;
 }
 
-export const Message = ({ me, message }: MessageProps) => {
+export const Message = ({ me, message }: MessageProps): JSX.Element => {
   return (
     <Flex
       bg={me ? "purple.500" : "gray.400"}

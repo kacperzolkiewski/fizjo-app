@@ -11,13 +11,7 @@ import {
 import { motion } from "framer-motion";
 import { isUndefined } from "lodash";
 import React, { useState } from "react";
-import {
-  Physiotherapists,
-  PhysiotherapistsQuery,
-  PhysiotherapistsQueryHookResult,
-  PhysiotherapistsQueryResult,
-  useOpinionsQuery,
-} from "../../../api/graphql";
+import { PhysiotherapistsQuery, useOpinionsQuery } from "../../../api/graphql";
 import { Calendar } from "../../../components/Calendar";
 import { ArrayElement } from "../../../utilities/types";
 import { Opinion } from "./Opinion";
@@ -31,7 +25,7 @@ interface PhysiotherapistBannerProps {
 
 export const PhysiotherapistBanner = ({
   physiotherapist,
-}: PhysiotherapistBannerProps) => {
+}: PhysiotherapistBannerProps): JSX.Element => {
   const [showOpinions, setShowOpinions] = useState(false);
   const { data } = useOpinionsQuery({
     variables: { physiotherapist_id: physiotherapist.id },

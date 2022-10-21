@@ -12,8 +12,15 @@ interface PhysiotherapistInfoProps {
 
 export const PhysiotherapistInfo = ({
   physiotherapist,
-}: PhysiotherapistInfoProps) => {
-  const { id, name, surname, opinions, adress, visit_types } = physiotherapist;
+}: PhysiotherapistInfoProps): JSX.Element => {
+  const {
+    id,
+    name,
+    surname,
+    opinions,
+    adress,
+    visit_types: visitTypes,
+  } = physiotherapist;
 
   const opinionsNumber = opinions.length;
 
@@ -22,7 +29,7 @@ export const PhysiotherapistInfo = ({
       <HStack spacing={4} h="40%">
         <Image src={AvatarImage} width="80px" height="80px" />
         <VStack spacing={0} alignItems="flex-start">
-          <Link href={`physiotherapist/${id}`}>
+          <Link href={`physiotherapist/${String(id)}`}>
             <Text
               fontWeight="bold"
               fontSize="24px"
@@ -40,7 +47,7 @@ export const PhysiotherapistInfo = ({
         <Text mt="20px" mb="10px">
           {adress}
         </Text>
-        {visit_types.map((visitType, index) => (
+        {visitTypes.map((visitType, index) => (
           <Text key={index}>
             {visitType.name} - {visitType.price} zł
           </Text>

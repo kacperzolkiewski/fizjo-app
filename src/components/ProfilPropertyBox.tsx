@@ -12,7 +12,7 @@ export const ProfilPropertyBox = ({
   label,
   propertyValue,
   onClick,
-}: ProfilPropertyBoxProps) => {
+}: ProfilPropertyBoxProps): JSX.Element => {
   return (
     <Button
       display="flex"
@@ -33,7 +33,7 @@ export const ProfilPropertyBox = ({
         {label}
       </Heading>
       <PhoneIcon position="absolute" right={5} />
-      <Text color="gray">{propertyValue || "..."}</Text>
+      <Text color="gray">{propertyValue ?? "..."}</Text>
     </Button>
   );
 };

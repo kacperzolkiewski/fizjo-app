@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { LoginView } from "../../login";
 import { RegisterView } from "../../register";
 
-export const StartView = () => {
+export const StartView = (): JSX.Element => {
   const [isClicked, setIsClicked] = useState(false);
   const [isPatient, setIsPatient] = useState(true);
 

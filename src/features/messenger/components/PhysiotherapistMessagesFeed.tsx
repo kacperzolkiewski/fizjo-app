@@ -10,17 +10,15 @@ import {
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { usePatientQuery } from "../../../api/graphql";
-import AvatarImage from "../../../assets/awatar.png";
 import { usePhysiotherapist } from "../../../utilities/usePhysiotherapist";
 import { useCreateMessageMutation, useUserMessagesQuery } from "../api/graphql";
-import { Message } from "./Message";
 import { Messages } from "./Messages";
 
 export const PhysiotherapistMessagesFeed = ({
   patientId,
 }: {
   patientId: string;
-}) => {
+}): JSX.Element => {
   const [newMessage, setNewMessage] = useState("");
   const { data } = usePatientQuery({ variables: { id: patientId } });
   const [createNewMessage] = useCreateMessageMutation();
@@ -34,7 +32,7 @@ export const PhysiotherapistMessagesFeed = ({
   });
   const messages = messagesData?.messages ?? [];
   const messagesEndRef: React.LegacyRef<HTMLDivElement> = useRef(null);
-  const scrollToBottom = () => {
+  const scrollToBottom = (): void => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -45,8 +43,12 @@ export const PhysiotherapistMessagesFeed = ({
   return (
     <Flex pl="20px" w="100%" flexDir="column" justifyContent="space-between">
       <HStack borderBottom="1px solid #EDF2F7" bg="white" h="15%" pl="40px">
-        <Image src={AvatarImage} width="90px" height="90px" />
-        <Heading>{`${patient?.name} ${patient?.surname}`}</Heading>
+        <Image
+          src={require("../../../assets/awatar.png")}
+          width="90px"
+          height="90px"
+        />
+        <Heading>{`${patient?.name ?? ""} ${patient?.surname ?? ""}`}</Heading>
       </HStack>
       <Flex
         flexDir="column"
@@ -79,7 +81,7 @@ export const PhysiotherapistMessagesFeed = ({
                     created_by: physiotherapistId,
                   },
                   onCompleted() {
-                    refetch();
+                    void refetch();
                     setNewMessage("");
                   },
                 });

@@ -11,7 +11,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   Textarea,
   useDisclosure,
   VStack,
@@ -19,22 +18,22 @@ import {
 import { Opinion } from "../../home/components/Opinion";
 import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
 import { useOpinionsQuery } from "../../../api/graphql";
-import { isUndefined, reverse } from "lodash";
-import { useState } from "react";
+import { isUndefined } from "lodash";
+import React, { useState } from "react";
 
 interface OpinionsModalProps {
-  physiotherapist_id?: string;
+  physiotherapistId?: string;
   addOpinion?: (comment: string) => void;
 }
 
 export const OpinionsModal = ({
-  physiotherapist_id,
+  physiotherapistId,
   addOpinion,
-}: OpinionsModalProps) => {
+}: OpinionsModalProps): JSX.Element => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [opinion, setOpinion] = useState("");
   const { data, refetch } = useOpinionsQuery({
-    variables: { physiotherapist_id: physiotherapist_id },
+    variables: { physiotherapist_id: physiotherapistId },
   });
   const opinions = data?.opinions ?? [];
   const opinionsLength = opinions.length;
@@ -54,7 +53,7 @@ export const OpinionsModal = ({
             Opinie
           </ModalHeader>
           <ModalBody px="0" h="70%">
-            {addOpinion ? (
+            {addOpinion != null ? (
               <Flex flexDir="column">
                 <Textarea
                   value={opinion}
@@ -66,7 +65,7 @@ export const OpinionsModal = ({
                   onClick={() => {
                     addOpinion(opinion);
                     setOpinion("");
-                    refetch();
+                    void refetch();
                   }}
                 >
                   Dodaj Opinię

@@ -7,7 +7,10 @@ interface ReserveVisitButtonProps {
   date: string;
 }
 
-export const ReserveVisitButton = ({ hour, date }: ReserveVisitButtonProps) => {
+export const ReserveVisitButton = ({
+  hour,
+  date,
+}: ReserveVisitButtonProps): JSX.Element => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

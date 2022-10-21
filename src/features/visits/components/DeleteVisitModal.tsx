@@ -8,6 +8,7 @@ import {
   ModalFooter,
   ModalOverlay,
 } from "@chakra-ui/react";
+import React from "react";
 
 export const VisitDeleteModal = ({
   isOpen,
@@ -17,7 +18,7 @@ export const VisitDeleteModal = ({
   isOpen: boolean;
   onClose: () => void;
   onDeleteVisit: () => void;
-}) => (
+}): JSX.Element => (
   <Modal isOpen={isOpen} onClose={onClose} isCentered>
     <ModalOverlay />
     <ModalContent

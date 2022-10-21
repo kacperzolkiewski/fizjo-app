@@ -14,10 +14,10 @@ import { usePatient } from "../../../utilities/usePatient";
 import { EditIcon } from "@chakra-ui/icons";
 import { EditPatientModal } from "./EditPatientModal";
 
-export const PatientProfile = () => {
+export const PatientProfile = (): JSX.Element => {
   const patient = usePatient();
   console.log(patient);
-  const { name, surname, email, id, pesel, phone } = patient;
+  const { name, surname, email, pesel, phone } = patient;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -41,7 +41,7 @@ export const PatientProfile = () => {
           <Image src={AvatarImage} width="180px" height="180px" />
           <Flex flexDir="column" mt="15px">
             <Heading fontSize="20px" textAlign="center">
-              {`${name} ${surname}`}
+              {`${name ?? ""} ${surname ?? ""}`}
             </Heading>
             <Text textAlign="center">{email}</Text>
           </Flex>

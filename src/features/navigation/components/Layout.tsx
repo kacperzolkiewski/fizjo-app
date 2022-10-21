@@ -3,10 +3,11 @@ import { motion, useCycle } from "framer-motion";
 import Head from "next/head";
 import type { PropsWithChildren } from "react";
 import { NavigationBar } from "./NavigationBar";
+import React from "react";
 
 const AnimatedBox = motion(Box);
 
-export const Layout = ({ children }: PropsWithChildren) => {
+export const Layout = ({ children }: PropsWithChildren): JSX.Element => {
   const [isNavbarExpanded, cycleNavbarExpanded] = useCycle(true, false);
 
   return (

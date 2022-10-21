@@ -6,7 +6,7 @@ interface GridTextProps {
   value?: string;
 }
 
-export const GridText = ({ label, value }: GridTextProps) => {
+export const GridText = ({ label, value }: GridTextProps): JSX.Element => {
   return (
     <Flex
       width="70%"
@@ -20,7 +20,7 @@ export const GridText = ({ label, value }: GridTextProps) => {
         {label}
       </Text>
       <Text fontWeight="bold" fontSize="20px" w="100%" padding="5px">
-        {value || "..."}
+        {value ?? "..."}
       </Text>
     </Flex>
   );
