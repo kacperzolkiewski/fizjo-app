@@ -15,6 +15,13 @@
     "project": "tsconfig.json"
   },
   "plugins": ["react"],
-  "rules": {},
-  "ignorePatterns": ["graphql.ts"]
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["./*", "../*", ".."]
+      }
+    ]
+  },
+  "ignorePatterns": ["graphql.ts", "next-env.d.ts"]
 }

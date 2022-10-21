@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
-import { BackendProvider } from "./backend";
-import { UIProvider } from "./ui/wrapper";
+import { BackendProvider } from "@/providers/backend";
+import { UIProvider } from "@/providers/ui/wrapper";
 
 export const CombinedProvider = ({
   children,

@@ -6,13 +6,13 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import AvatarImage from "../../../assets/awatar.png";
+import AvatarImage from "@/assets/awatar.png";
 import Image from "next/image";
 import React from "react";
-import { GridText } from "../../../components/GridText";
-import { usePatient } from "../../../utilities/usePatient";
+import { GridText } from "@/components/GridText";
+import { usePatient } from "@/utilities/usePatient";
 import { EditIcon } from "@chakra-ui/icons";
-import { EditPatientModal } from "./EditPatientModal";
+import { EditPatientModal } from "@/features/profil/components/EditPatientModal";
 
 export const PatientProfile = (): JSX.Element => {
   const patient = usePatient();

@@ -1,7 +1,7 @@
 import { useUserEmail, useUserId } from "@nhost/react";
-import { useGetUserByIdQuery } from "../features/physiotherapist/api/graphql";
-import { Physioterapist } from "./types";
+import { Physioterapist } from "@/utilities/types";
 import { isNull } from "lodash";
+import { useGetUserByIdQuery } from "@/features/physiotherapist/api/graphql";
 
 export const usePhysiotherapist = (): Physioterapist => {
   const id = useUserId();

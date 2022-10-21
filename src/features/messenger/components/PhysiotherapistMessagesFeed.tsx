@@ -9,10 +9,13 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import { usePatientQuery } from "../../../api/graphql";
-import { usePhysiotherapist } from "../../../utilities/usePhysiotherapist";
-import { useCreateMessageMutation, useUserMessagesQuery } from "../api/graphql";
-import { Messages } from "./Messages";
+import { usePatientQuery } from "@/api/graphql";
+import { usePhysiotherapist } from "@/utilities/usePhysiotherapist";
+import {
+  useCreateMessageMutation,
+  useUserMessagesQuery,
+} from "@/features/messenger/api/graphql";
+import { Messages } from "@/features/messenger/components/Messages";
 
 export const PhysiotherapistMessagesFeed = ({
   patientId,

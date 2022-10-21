@@ -10,14 +10,14 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import AvatarImage from "../../../assets/awatar.png";
-import { OpinionsModal } from "../../profil/components/OpinionsModal";
+import AvatarImage from "@/assets/awatar.png";
+import { OpinionsModal } from "@/features/profil/components/OpinionsModal";
 
-import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
-import { VisitTypesModal } from "../../profil/components/VisitTypesModal";
-import { usePhysiotherapistQuery } from "../api/graphql";
-import { useCreateOpinionMutation } from "../../../api/graphql";
-import { usePatient } from "../../../utilities/usePatient";
+import { ProfilPropertyBox } from "@/components/ProfilPropertyBox";
+import { VisitTypesModal } from "@/features/profil/components/VisitTypesModal";
+import { usePhysiotherapistQuery } from "@/features/physiotherapist/api/graphql";
+import { useCreateOpinionMutation } from "@/api/graphql";
+import { usePatient } from "@/utilities/usePatient";
 
 export const PhysiotherapistView = (): JSX.Element => {
   const router = useRouter();

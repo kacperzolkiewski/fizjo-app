@@ -5,7 +5,7 @@ import {
   useUpdatePhysiotherapistAdressMutation,
   useUpdatePhysiotherapistEmailMutation,
   useUpdatePhysiotherapistPhoneMutation,
-} from "../features/physiotherapist/api/graphql";
+} from "@/features/physiotherapist/api/graphql";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const usePhysiotherapistUpdateMutations = () => {

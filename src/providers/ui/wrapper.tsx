@@ -2,7 +2,7 @@ import "@fontsource/raleway/500.css";
 
 import React, { PropsWithChildren } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "./theme";
+import { theme } from "@/providers/ui/theme";
 
 export const UIProvider = ({ children }: PropsWithChildren): JSX.Element => {
   return <ChakraProvider theme={theme}>{children}</ChakraProvider>;

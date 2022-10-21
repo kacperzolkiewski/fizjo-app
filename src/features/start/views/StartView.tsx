@@ -1,7 +1,7 @@
 import { Box, Button, Checkbox, Flex, Heading, Stack } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { LoginView } from "../../login";
-import { RegisterView } from "../../register";
+import { LoginView } from "@/features/login";
+import { RegisterView } from "@/features/register";
 
 export const StartView = (): JSX.Element => {
   const [isClicked, setIsClicked] = useState(false);

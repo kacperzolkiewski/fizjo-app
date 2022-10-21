@@ -10,7 +10,7 @@ import { useSignOut } from "@nhost/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React from "react";
-import { SignOutModal } from "./SignOutModal";
+import { SignOutModal } from "@/features/navigation/components/SignOutModal";
 
 const AnimatedFlex = motion(Flex);
 const AnimatedStack = motion(Stack);

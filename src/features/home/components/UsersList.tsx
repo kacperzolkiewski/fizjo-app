@@ -1,6 +1,6 @@
 import { VStack } from "@chakra-ui/react";
 import React from "react";
-import { User } from "./User";
+import { User } from "@/features/home/components/User";
 
 interface UsersListProps {
   users?: Array<{ name: string; surname: string }>;

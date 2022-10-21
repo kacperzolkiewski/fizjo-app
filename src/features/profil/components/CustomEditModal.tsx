@@ -12,9 +12,9 @@ import {
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
+import { ProfilPropertyBox } from "@/components/ProfilPropertyBox";
 import * as yup from "yup";
-import { FormField } from "../../../components/FormField";
+import { FormField } from "@/components/FormField";
 import React, { useEffect, useState } from "react";
 
 interface CustomEditModalProps {

@@ -1,3 +1,3 @@
-import { VisitsView } from "../../features/visits/views/VisitsView";
+import { VisitsView } from "@/features/visits/views/VisitsView";
 
 export default VisitsView;

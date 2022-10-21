@@ -15,9 +15,9 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { Opinion } from "../../home/components/Opinion";
-import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
-import { useOpinionsQuery } from "../../../api/graphql";
+import { Opinion } from "@/features/home/components/Opinion";
+import { ProfilPropertyBox } from "@/components/ProfilPropertyBox";
+import { useOpinionsQuery } from "@/api/graphql";
 import { isUndefined } from "lodash";
 import React, { useState } from "react";
 

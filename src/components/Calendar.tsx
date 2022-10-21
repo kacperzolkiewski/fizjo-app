@@ -1,6 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
-import { CalendarItem } from "./CalendarItem";
+import { CalendarItem } from "@/components/CalendarItem";
 
 export const Calendar = (): JSX.Element => {
   return (

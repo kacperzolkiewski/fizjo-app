@@ -3,7 +3,7 @@ import { NhostApolloProvider } from "@nhost/react-apollo";
 import type { PropsWithChildren } from "react";
 import React from "react";
 
-import { nhost } from "../utilities/nhost";
+import { nhost } from "@/utilities/nhost";
 
 export const BackendProvider = ({
   children,

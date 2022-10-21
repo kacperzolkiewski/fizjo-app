@@ -1,6 +1,6 @@
 import { Heading, Stack } from "@chakra-ui/react";
 import React from "react";
-import { VisitsTable } from "../components/VisitsTable";
+import { VisitsTable } from "@/features/visits/components/VisitsTable";
 
 export const VisitsView = (): JSX.Element => {
   return (

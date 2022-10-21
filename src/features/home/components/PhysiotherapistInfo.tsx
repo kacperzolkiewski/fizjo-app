@@ -1,10 +1,10 @@
 import { Box, HStack, Text, VStack } from "@chakra-ui/react";
-import AvatarImage from "../../../assets/awatar.png";
+import AvatarImage from "@/assets/awatar.png";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { ArrayElement } from "../../../utilities/types";
-import { PhysiotherapistsQuery } from "../../../api/graphql";
+import { ArrayElement } from "@/utilities/types";
+import { PhysiotherapistsQuery } from "@/api/graphql";
 
 interface PhysiotherapistInfoProps {
   physiotherapist: ArrayElement<PhysiotherapistsQuery["physiotherapists"]>;

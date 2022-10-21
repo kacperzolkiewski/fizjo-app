@@ -1,6 +1,6 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
 import React from "react";
-import { ReserveVisitButton } from "./ReserveVisitButton";
+import { ReserveVisitButton } from "@/components/ReserveVisitButton";
 
 interface CalendarItemProps {
   date: string;

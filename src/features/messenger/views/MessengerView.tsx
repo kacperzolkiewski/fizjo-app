@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react";
 import { useUserData } from "@nhost/react";
 import React, { ReactNode } from "react";
-import { PatientSidebar } from "../components/PatientSidebar";
-import { PhysiotherapistSidebar } from "../components/PhysiotherapistSidebar";
+import { PatientSidebar } from "@/features/messenger/components/PatientSidebar";
+import { PhysiotherapistSidebar } from "@/features/messenger/components/PhysiotherapistSidebar";
 
 export const MessengerView = ({
   children,

@@ -1,6 +1,6 @@
 import { Td, Tr } from "@chakra-ui/react";
 import React from "react";
-import { VisitMenu } from "./VisitsMenu";
+import { VisitMenu } from "@/features/visits/components/VisitsMenu";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface VisitProps {

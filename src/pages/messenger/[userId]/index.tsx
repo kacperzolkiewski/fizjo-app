@@ -1,3 +1,3 @@
-import { UserMessagesView } from "../../../features/messenger/views/UserMessagesView";
+import { UserMessagesView } from "@/features/messenger/views/UserMessagesView";
 
 export default UserMessagesView;

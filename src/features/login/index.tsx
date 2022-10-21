@@ -1,3 +1,3 @@
-import { LoginView } from "./views/LoginView";
+import { LoginView } from "@/features/login/views/LoginView";
 
 export { LoginView };

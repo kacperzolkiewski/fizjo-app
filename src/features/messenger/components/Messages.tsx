@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
-import { UserMessagesQuery } from "../api/graphql";
-import { Message } from "./Message";
+import { UserMessagesQuery } from "@/features/messenger/api/graphql";
+import { Message } from "@/features/messenger/components/Message";
 
 interface MessagesProps {
   messages: UserMessagesQuery["messages"];

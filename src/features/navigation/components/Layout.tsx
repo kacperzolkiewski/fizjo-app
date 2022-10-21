@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { motion, useCycle } from "framer-motion";
 import Head from "next/head";
 import type { PropsWithChildren } from "react";
-import { NavigationBar } from "./NavigationBar";
+import { NavigationBar } from "@/features/navigation/components/NavigationBar";
 import React from "react";
 
 const AnimatedBox = motion(Box);

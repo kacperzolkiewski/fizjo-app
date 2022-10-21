@@ -2,11 +2,11 @@ import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Flex, useToast } from "@chakra-ui/react";
-import { FormField } from "../../../components/FormField";
-import { registerSchema } from "../utilities/registerSchema";
+import { FormField } from "@/components/FormField";
+import { registerSchema } from "@/features/register/utilities/registerSchema";
 import { useSignUpEmailPassword } from "@nhost/react";
-import { useCreatePhysiotherapistMutation } from "../../physiotherapist/api/graphql";
-import { useCreatePatientMutation } from "../../profil/api/graphql";
+import { useCreatePhysiotherapistMutation } from "@/features/physiotherapist/api/graphql";
+import { useCreatePatientMutation } from "@/features/profil/api/graphql";
 
 export const RegisterView = ({
   isPatient,

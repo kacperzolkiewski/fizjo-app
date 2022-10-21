@@ -1,6 +1,6 @@
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
-import { Visit } from "./Visit";
+import { Visit } from "@/features/visits/components/Visit";
 
 export const VisitsTable = (): JSX.Element => {
   return (

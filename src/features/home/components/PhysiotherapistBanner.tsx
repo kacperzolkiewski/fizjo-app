@@ -11,11 +11,11 @@ import {
 import { motion } from "framer-motion";
 import { isUndefined } from "lodash";
 import React, { useState } from "react";
-import { PhysiotherapistsQuery, useOpinionsQuery } from "../../../api/graphql";
-import { Calendar } from "../../../components/Calendar";
-import { ArrayElement } from "../../../utilities/types";
-import { Opinion } from "./Opinion";
-import { PhysiotherapistInfo } from "./PhysiotherapistInfo";
+import { PhysiotherapistsQuery, useOpinionsQuery } from "@/api/graphql";
+import { Calendar } from "@/components/Calendar";
+import { ArrayElement } from "@/utilities/types";
+import { Opinion } from "@/features/home/components/Opinion";
+import { PhysiotherapistInfo } from "@/features/home/components/PhysiotherapistInfo";
 
 const AnimatedStack = motion(VStack);
 

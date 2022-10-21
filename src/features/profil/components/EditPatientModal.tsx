@@ -11,10 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { FormField } from "../../../components/FormField";
-import { Patient } from "../../../utilities/types";
+import { FormField } from "@/components/FormField";
+import { Patient } from "@/utilities/types";
 import React from "react";
-import { editPatientSchema } from "../utilities/schemas";
+import { editPatientSchema } from "@/features/profil/utilities/schemas";
 
 export const EditPatientModal = ({
   patient,

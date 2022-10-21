@@ -9,8 +9,8 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { usePhysiotherapistsQuery } from "../../../api/graphql";
-import { PhysiotherapistBanner } from "../components/PhysiotherapistBanner";
+import { usePhysiotherapistsQuery } from "@/api/graphql";
+import { PhysiotherapistBanner } from "@/features/home/components/PhysiotherapistBanner";
 
 export const PatientHomeView = (): JSX.Element => {
   const { data } = usePhysiotherapistsQuery();

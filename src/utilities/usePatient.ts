@@ -1,6 +1,6 @@
 import { useUserEmail, useUserId } from "@nhost/react";
-import { usePatientByUserIdQuery } from "../features/profil/api/graphql";
-import { Patient } from "./types";
+import { usePatientByUserIdQuery } from "@/features/profil/api/graphql";
+import { Patient } from "@/utilities/types";
 
 export const usePatient = (): Patient => {
   const id = useUserId();

@@ -15,11 +15,11 @@ import {
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { ProfilPropertyBox } from "../../../components/ProfilPropertyBox";
-import { FormField } from "../../../components/FormField";
-import { USER_SCHEMAS } from "../utilities/schemas";
-import { VisitType } from "../../visits/components/VisitType";
-import { useVisitTypesQuery } from "../../physiotherapist/api/graphql";
+import { ProfilPropertyBox } from "@/components/ProfilPropertyBox";
+import { FormField } from "@/components/FormField";
+import { USER_SCHEMAS } from "@/features/profil/utilities/schemas";
+import { VisitType } from "@/features/visits/components/VisitType";
+import { useVisitTypesQuery } from "@/features/physiotherapist/api/graphql";
 import { AddIcon } from "@chakra-ui/icons";
 import { isUndefined } from "lodash";
 import React from "react";

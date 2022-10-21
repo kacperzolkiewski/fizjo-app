@@ -3,9 +3,9 @@ import { format, parseISO } from "date-fns";
 import { pl } from "date-fns/locale";
 import Image from "next/image";
 import React from "react";
-import { OpinionsQuery } from "../../../api/graphql";
-import AvatarImage from "../../../assets/awatar.png";
-import { ArrayElement } from "../../../utilities/types";
+import { OpinionsQuery } from "@/api/graphql";
+import AvatarImage from "@/assets/awatar.png";
+import { ArrayElement } from "@/utilities/types";
 
 interface OpinionProps {
   opinion: ArrayElement<OpinionsQuery["opinions"]>;

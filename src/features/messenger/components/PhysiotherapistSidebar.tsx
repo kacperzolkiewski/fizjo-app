@@ -1,10 +1,10 @@
 import { Button, useDisclosure, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
-import { usePhysiotherapist } from "../../../utilities/usePhysiotherapist";
-import { User } from "../../home/components/User";
-import { usePhysiotherapistContactsQuery } from "../api/graphql";
-import { NewPhysiotherapistMessageModal } from "./NewPhysiotherapistMessageModal";
+import { usePhysiotherapist } from "@/utilities/usePhysiotherapist";
+import { User } from "@/features/home/components/User";
+import { usePhysiotherapistContactsQuery } from "@/features/messenger/api/graphql";
+import { NewPhysiotherapistMessageModal } from "@/features/messenger/components/NewPhysiotherapistMessageModal";
 
 export const PhysiotherapistSidebar = (): JSX.Element => {
   const { push } = useRouter();

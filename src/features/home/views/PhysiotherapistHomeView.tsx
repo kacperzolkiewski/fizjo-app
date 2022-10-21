@@ -1,6 +1,6 @@
 import { Heading, HStack, Stack } from "@chakra-ui/react";
 import React from "react";
-import { PhysiotherapistVisit } from "../components/PhysiotherapistVisit";
+import { PhysiotherapistVisit } from "@/features/home/components/PhysiotherapistVisit";
 
 export const PhysiotherapistHomeView = (): JSX.Element => {
   return (

@@ -1,9 +1,9 @@
 import { useUserData } from "@nhost/react";
 import { useRouter } from "next/router";
 import React from "react";
-import { PatientMessagesFeed } from "../components/PatientMessagesFeed";
-import { PhysiotherapistMessagesFeed } from "../components/PhysiotherapistMessagesFeed";
-import { MessengerView } from "./MessengerView";
+import { PatientMessagesFeed } from "@/features/messenger/components/PatientMessagesFeed";
+import { PhysiotherapistMessagesFeed } from "@/features/messenger/components/PhysiotherapistMessagesFeed";
+import { MessengerView } from "@/features/messenger/views/MessengerView";
 
 export const UserMessagesView = (): JSX.Element => {
   const { query } = useRouter();

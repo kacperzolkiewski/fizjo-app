@@ -1,6 +1,6 @@
 import { useAuthenticationStatus } from "@nhost/react";
 import React from "react";
-import { StartView } from "../../start";
+import { StartView } from "@/features/start";
 
 export const AuthenticationGuard = ({
   children,

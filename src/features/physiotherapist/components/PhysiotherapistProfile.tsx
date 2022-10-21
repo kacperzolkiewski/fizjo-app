@@ -1,14 +1,14 @@
 import { Button, Flex, Heading, Stack, VStack } from "@chakra-ui/react";
 import React from "react";
-import AvatarImage from "../../../assets/awatar.png";
+import AvatarImage from "@/assets/awatar.png";
 import Image from "next/image";
-import { OpinionsModal } from "../../profil/components/OpinionsModal";
-import { CustomEditModal } from "../../profil/components/CustomEditModal";
-import { USER_SCHEMAS } from "../../profil/utilities/schemas";
-import { VisitTypesModal } from "../../profil/components/VisitTypesModal";
+import { OpinionsModal } from "@/features/profil/components/OpinionsModal";
+import { CustomEditModal } from "@/features/profil/components/CustomEditModal";
+import { USER_SCHEMAS } from "@/features/profil/utilities/schemas";
+import { VisitTypesModal } from "@/features/profil/components/VisitTypesModal";
 import { CalendarIcon } from "@chakra-ui/icons";
-import { usePhysiotherapist } from "../../../utilities/usePhysiotherapist";
-import { usePhysiotherapistUpdateMutations } from "../../../utilities/usePhysiotherapistUpdateMutations";
+import { usePhysiotherapist } from "@/utilities/usePhysiotherapist";
+import { usePhysiotherapistUpdateMutations } from "@/utilities/usePhysiotherapistUpdateMutations";
 import { useUserId } from "@nhost/react";
 import { isUndefined } from "lodash";
 

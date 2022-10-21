@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { usePhysiotherapistsQuery } from "../../../api/graphql";
-import { User } from "../../home/components/User";
+import { usePhysiotherapistsQuery } from "@/api/graphql";
+import { User } from "@/features/home/components/User";
 
 export const NewPatientMessageModal = ({
   isOpen,

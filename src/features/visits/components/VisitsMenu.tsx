@@ -7,7 +7,7 @@ import {
   MenuList,
   useDisclosure,
 } from "@chakra-ui/react";
-import { VisitDeleteModal } from "./DeleteVisitModal";
+import { VisitDeleteModal } from "@/features/visits/components/DeleteVisitModal";
 import React from "react";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

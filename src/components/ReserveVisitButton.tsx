@@ -1,6 +1,6 @@
 import { Box, Button, useDisclosure } from "@chakra-ui/react";
 import React from "react";
-import { ReserveVisitModal } from "./ReserveVisitModal";
+import { ReserveVisitModal } from "@/components/ReserveVisitModal";
 
 interface ReserveVisitButtonProps {
   hour: string;

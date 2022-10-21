@@ -1,3 +1,3 @@
-import { RegisterView } from "./views/RegisterView";
+import { RegisterView } from "@/features/register/views/RegisterView";
 
 export { RegisterView };

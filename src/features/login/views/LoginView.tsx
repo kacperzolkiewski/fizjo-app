@@ -3,8 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignInEmailPassword } from "@nhost/react";
 import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { FormField } from "../../../components/FormField";
-import { loginSchema } from "../utilities/loginSchema";
+import { FormField } from "@/components/FormField";
+import { loginSchema } from "@/features/login/utilities/loginSchema";
 
 export const LoginView = (): JSX.Element => {
   const {

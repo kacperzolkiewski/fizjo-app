@@ -1,10 +1,10 @@
 import { Button, useDisclosure, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
-import { usePatient } from "../../../utilities/usePatient";
-import { User } from "../../home/components/User";
-import { usePatientContactsQuery } from "../api/graphql";
-import { NewPatientMessageModal } from "./NewPatientMessageModal";
+import { usePatient } from "@/utilities/usePatient";
+import { User } from "@/features/home/components/User";
+import { usePatientContactsQuery } from "@/features/messenger/api/graphql";
+import { NewPatientMessageModal } from "@/features/messenger/components/NewPatientMessageModal";
 
 export const PatientSidebar = (): JSX.Element => {
   const { push } = useRouter();

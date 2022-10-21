@@ -1,5 +1,5 @@
 import { Button, Text } from "@chakra-ui/react";
-import AvatarImage from "../../../assets/awatar.png";
+import AvatarImage from "@/assets/awatar.png";
 import Image from "next/image";
 import React from "react";
 
