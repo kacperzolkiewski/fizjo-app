@@ -19,7 +19,7 @@ import { PhysiotherapistInfo } from "@/features/home/components/PhysiotherapistI
 
 const AnimatedStack = motion(VStack);
 
-interface PhysiotherapistBannerProps {
+export interface PhysiotherapistBannerProps {
   physiotherapist: ArrayElement<PhysiotherapistsQuery["physiotherapists"]>;
 }
 
@@ -42,7 +42,7 @@ export const PhysiotherapistBanner = ({
     <Flex w="80%" flexDir="column" bg="white" rounded={5}>
       <HStack spacing={0.5} h="350px" mb="20px">
         <PhysiotherapistInfo physiotherapist={physiotherapist} />
-        <Box p="20px" w="60%" h="100%" borderLeft="1px solid lightgray">
+        <Box w="60%" p="10px" h="100%" borderLeft="1px solid lightgray">
           <Calendar />
         </Box>
       </HStack>
@@ -61,7 +61,7 @@ export const PhysiotherapistBanner = ({
           ))
         ) : (
           <Flex w="100%" h="100%" alignItems="center" justifyContent="center">
-            <Heading>
+            <Heading textAlign="center">
               Ten fizjoterapeuta nie posiada jeszcze żadnych opinii
             </Heading>
           </Flex>

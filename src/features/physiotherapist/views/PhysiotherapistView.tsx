@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   Stack,
+  useDisclosure,
   useToast,
   VStack,
 } from "@chakra-ui/react";
@@ -18,6 +19,12 @@ import { VisitTypesModal } from "@/features/profil/components/VisitTypesModal";
 import { usePhysiotherapistQuery } from "@/features/physiotherapist/api/graphql";
 import { useCreateOpinionMutation } from "@/api/graphql";
 import { usePatient } from "@/utilities/usePatient";
+import dynamic from "next/dynamic";
+const MapModal = dynamic(
+  async () =>
+    await import("../components/MapModal").then((module) => module.MapModal),
+  { ssr: false }
+);
 
 export const PhysiotherapistView = (): JSX.Element => {
   const router = useRouter();
@@ -27,6 +34,7 @@ export const PhysiotherapistView = (): JSX.Element => {
   const { data } = usePhysiotherapistQuery({ variables: { id } });
   const physiotherapist = data?.physiotherapists_by_pk;
   const [createOpininon] = useCreateOpinionMutation();
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
     <Stack p="20px" h="100vh" justifyContent="center">
@@ -51,6 +59,7 @@ export const PhysiotherapistView = (): JSX.Element => {
             propertyValue={physiotherapist?.phone}
           />
           <ProfilPropertyBox
+            onClick={onOpen}
             label="Adres"
             propertyValue={physiotherapist?.adress}
           />
@@ -117,6 +126,11 @@ export const PhysiotherapistView = (): JSX.Element => {
           <CalendarIcon position="absolute" right={5} />
         </Button>
       </Flex>
+      <MapModal
+        adress={physiotherapist?.adress}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </Stack>
   );
 };
