@@ -3,11 +3,44 @@ import { useRouter } from "next/router";
 import React from "react";
 import { usePatient } from "@/utilities/usePatient";
 import { User } from "@/features/home/components/User";
-import { usePatientContactsQuery } from "@/features/messenger/api/graphql";
+import {
+  PatientContactsQuery,
+  usePatientContactsQuery,
+} from "@/features/messenger/api/graphql";
 import { NewPatientMessageModal } from "@/features/messenger/components/NewPatientMessageModal";
+import { useNotification } from "@/features/messenger/hooks/useNotification";
+import { ArrayElement } from "@/utilities/types";
+
+interface UserNotificationWrapperProps {
+  physio: ArrayElement<PatientContactsQuery["physiotherapists"]>;
+  patientId?: string;
+}
+
+const UserNotificationWrapper = ({
+  physio,
+  patientId,
+}: UserNotificationWrapperProps) => {
+  const { push } = useRouter();
+  const isNotification = useNotification({
+    patientId,
+    physiotherapistId: physio.id,
+    userId: patientId,
+  });
+
+  return (
+    <User
+      w="330px"
+      name={physio.name}
+      surname={physio.surname}
+      onClick={() => {
+        void push(`/messenger/${String(physio.id)}`);
+      }}
+      isNotification={isNotification}
+    />
+  );
+};
 
 export const PatientSidebar = (): JSX.Element => {
-  const { push } = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { id, name, surname } = usePatient();
   const { data } = usePatientContactsQuery({
@@ -26,14 +59,10 @@ export const PatientSidebar = (): JSX.Element => {
       </VStack>
       <VStack overflowY="scroll" spacing="8px">
         {data?.physiotherapists.map((physio) => (
-          <User
-            w="330px"
+          <UserNotificationWrapper
             key={physio.id}
-            name={physio.name}
-            surname={physio.surname}
-            onClick={() => {
-              void push(`/messenger/${String(physio.id)}`);
-            }}
+            physio={physio}
+            patientId={id}
           />
         ))}
       </VStack>

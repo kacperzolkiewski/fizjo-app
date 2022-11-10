@@ -1,0 +1,5 @@
+mutation DeleteVisitType($id: uuid = "") {
+  delete_visit_types_by_pk(id: $id) {
+    id
+  }
+}

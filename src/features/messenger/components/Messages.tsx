@@ -23,14 +23,16 @@ export const Messages = ({
   }, [messages]);
 
   return (
-    <Flex p="20px" pb="50px" flexDir="column" justifyContent="flex-end">
-      {messages.map((message) => (
-        <Message
-          key={message.id}
-          message={message.message}
-          me={message.created_by === createdBy}
-        />
-      ))}
+    <Flex p="20px" pb="50px" overflow="scroll" flexDir="column">
+      {messages.map((message) => {
+        return (
+          <Message
+            key={message.id}
+            message={message}
+            me={message.created_by === createdBy}
+          />
+        );
+      })}
       <Flex ref={messagesEndRef} />
     </Flex>
   );

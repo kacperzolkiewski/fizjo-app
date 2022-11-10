@@ -22,13 +22,11 @@ export const LoginView = (): JSX.Element => {
   const disableForm = isLoading || needsEmailVerification || isSubmitting;
 
   const submitForm: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     const { isError, error } = await signInEmailPassword(
       data.email,
       data.password
     );
 
-    console.log("xxx");
     if (isError) {
       showToast({
         title: "Nie udało się zalogować",

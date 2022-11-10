@@ -66,10 +66,21 @@ export const MapModal = ({
           >
             Twoja lokalizacja
           </Button>
+          <Button
+            position="absolute"
+            color="white"
+            bg="black"
+            left={180}
+            _hover={{}}
+            top={2}
+            zIndex={10}
+          >
+            Fizjoterapeuta
+          </Button>
           <Map width={1400} defaultCenter={location} defaultZoom={11}>
-            <Marker color="#805AD5" width={50} anchor={location} />
+            <Marker color="black" width={50} anchor={location} />
             {userLocation != null && (
-              <Marker color="black" width={50} anchor={userLocation} />
+              <Marker color="#805AD5" width={50} anchor={userLocation} />
             )}
           </Map>
           <ModalCloseButton />

@@ -13,12 +13,17 @@ import { GridText } from "@/components/GridText";
 import { usePatient } from "@/utilities/usePatient";
 import { EditIcon } from "@chakra-ui/icons";
 import { EditPatientModal } from "@/features/profil/components/EditPatientModal";
+import { EditPasswordModal } from "@/components/EditPasswordModal";
 
 export const PatientProfile = (): JSX.Element => {
   const patient = usePatient();
-  console.log(patient);
   const { name, surname, email, pesel, phone } = patient;
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isEditPasswordOpen,
+    onOpen: onEditPasswordOpen,
+    onClose: onEditPasswordClose,
+  } = useDisclosure();
 
   return (
     <Flex h="100vh" p="20px" justifyContent="center" alignItems="center">
@@ -45,6 +50,14 @@ export const PatientProfile = (): JSX.Element => {
             </Heading>
             <Text textAlign="center">{email}</Text>
           </Flex>
+          <Text
+            alignSelf="flex-end"
+            cursor="pointer"
+            _hover={{ textDecoration: "underline" }}
+            onClick={onEditPasswordOpen}
+          >
+            Zmień hasło
+          </Text>
         </Flex>
         <Grid
           padding="10px"
@@ -73,12 +86,10 @@ export const PatientProfile = (): JSX.Element => {
           />
         </Grid>
       </Box>
-
-      <EditPatientModal
-        patient={patient}
-        isOpen={isOpen}
-        onClose={onClose}
-        onEditUser={() => {}}
+      <EditPatientModal patient={patient} isOpen={isOpen} onClose={onClose} />
+      <EditPasswordModal
+        isOpen={isEditPasswordOpen}
+        onClose={onEditPasswordClose}
       />
     </Flex>
   );

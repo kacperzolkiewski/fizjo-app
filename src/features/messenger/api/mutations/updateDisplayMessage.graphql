@@ -1,0 +1,5 @@
+mutation updateDisplayMessage($id: uuid = "") {
+  update_messages_by_pk(pk_columns: { id: $id }, _set: { displayed: true }) {
+    id
+  }
+}

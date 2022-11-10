@@ -1,17 +1,18 @@
-import { Heading, HStack, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import React from "react";
-import { PhysiotherapistVisit } from "@/features/home/components/PhysiotherapistVisit";
+
+import { ReactCalendar } from "@/components/ReactCalendar";
 
 export const PhysiotherapistHomeView = (): JSX.Element => {
   return (
     <Stack
       overflow="auto"
       p="20px"
-      minH="100vh"
+      h="100vh"
       spacing={150}
       alignItems="flex-start"
     >
-      <Heading fontSize="40px">Zbliżające się wizyty</Heading>
+      {/* <Heading fontSize="40px">Zbliżające się wizyty</Heading>
       <HStack w="100%" overflow="auto" spacing={8} pb="20px">
         <PhysiotherapistVisit />
         <PhysiotherapistVisit />
@@ -21,7 +22,8 @@ export const PhysiotherapistHomeView = (): JSX.Element => {
         <PhysiotherapistVisit />
         <PhysiotherapistVisit />
         <PhysiotherapistVisit />
-      </HStack>
+      </HStack> */}
+      <ReactCalendar />
     </Stack>
   );
 };

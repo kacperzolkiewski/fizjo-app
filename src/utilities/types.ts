@@ -6,6 +6,8 @@ export interface Physioterapist {
   phone?: string;
   adress?: string;
   aboutMe?: string;
+  startWork?: number;
+  endWork?: number;
 }
 
 export interface Patient {

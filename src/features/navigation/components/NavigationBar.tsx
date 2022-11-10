@@ -1,4 +1,4 @@
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { ChatIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
@@ -75,28 +75,28 @@ export const NavigationBar = ({
             void push("/");
           }}
         >
-          Strona główna
+          {isExpanded ? "Strona główna" : null}
         </Button>
         <Button
           onClick={() => {
             void push("/visits");
           }}
         >
-          Wizyty
+          {isExpanded ? "Wizyty" : null}
         </Button>
         <Button
           onClick={() => {
             void push("/profil");
           }}
         >
-          Profil
+          {isExpanded ? "Profil" : null}
         </Button>
         <Button
           onClick={() => {
             void push("/messenger");
           }}
         >
-          Wiadomości
+          {isExpanded ? "Wiadomości" : <ChatIcon />}
         </Button>
       </AnimatedStack>
       <AnimatedStack
@@ -104,7 +104,7 @@ export const NavigationBar = ({
         variants={stackVariants}
         animate={currentVariant}
       >
-        <Button onClick={onOpen}>Wyloguj</Button>
+        <Button onClick={onOpen}>{isExpanded ? "Wyloguj" : null}</Button>
         <SignOutModal
           isOpen={isOpen}
           onClose={onClose}

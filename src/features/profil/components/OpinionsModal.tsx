@@ -32,7 +32,7 @@ export const OpinionsModal = ({
 }: OpinionsModalProps): JSX.Element => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [opinion, setOpinion] = useState("");
-  const { data, refetch } = useOpinionsQuery({
+  const { data } = useOpinionsQuery({
     variables: { physiotherapist_id: physiotherapistId },
   });
   const opinions = data?.opinions ?? [];
@@ -65,7 +65,6 @@ export const OpinionsModal = ({
                   onClick={() => {
                     addOpinion(opinion);
                     setOpinion("");
-                    void refetch();
                   }}
                 >
                   Dodaj Opinię
@@ -76,7 +75,7 @@ export const OpinionsModal = ({
               <VStack
                 flexDir="column"
                 spacing={4}
-                maxH="600px"
+                maxH="500px"
                 overflow="scroll"
               >
                 {opinions.map((opinion) => (

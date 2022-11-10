@@ -1,0 +1,8 @@
+mutation UpdatePhysiotherapistEndWork($id: uuid = "", $endWork: Int) {
+  update_physiotherapists_by_pk(
+    pk_columns: { id: $id }
+    _set: { endWork: $endWork }
+  ) {
+    id
+  }
+}

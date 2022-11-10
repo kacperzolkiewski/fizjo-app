@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { isUndefined } from "lodash";
 import React, { useState } from "react";
 import { PhysiotherapistsQuery, useOpinionsQuery } from "@/api/graphql";
-import { Calendar } from "@/components/Calendar";
+import { ReserveVisitCalendar } from "@/components/ReserveVisitCalendar";
 import { ArrayElement } from "@/utilities/types";
 import { Opinion } from "@/features/home/components/Opinion";
 import { PhysiotherapistInfo } from "@/features/home/components/PhysiotherapistInfo";
@@ -43,7 +43,7 @@ export const PhysiotherapistBanner = ({
       <HStack spacing={0.5} h="350px" mb="20px">
         <PhysiotherapistInfo physiotherapist={physiotherapist} />
         <Box w="60%" p="10px" h="100%" borderLeft="1px solid lightgray">
-          <Calendar />
+          <ReserveVisitCalendar id={physiotherapist.id} />
         </Box>
       </HStack>
       <AnimatedStack

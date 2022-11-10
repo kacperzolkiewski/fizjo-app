@@ -5,5 +5,8 @@ query PatientByUserId($user_id: uuid = "") {
     pesel
     surname
     phone
+    user {
+      email
+    }
   }
 }

@@ -1,10 +1,9 @@
-import { useUserEmail, useUserId } from "@nhost/react";
+import { useUserId } from "@nhost/react";
 import { usePatientByUserIdQuery } from "@/features/profil/api/graphql";
 import { Patient } from "@/utilities/types";
 
 export const usePatient = (): Patient => {
   const id = useUserId();
-  const email = useUserEmail();
   const { data } = usePatientByUserIdQuery({ variables: { user_id: id } });
   const currentPatient = data?.patients[0];
 
@@ -14,7 +13,7 @@ export const usePatient = (): Patient => {
     pesel: currentPatient?.pesel,
     surname: currentPatient?.surname,
     phone: currentPatient?.phone,
-    email,
+    email: currentPatient?.user.email,
   };
 
   return patient;

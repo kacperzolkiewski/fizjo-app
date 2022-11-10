@@ -1,3 +1,5 @@
+import { VisitTypesDocument } from "@/features/physiotherapist/api/graphql";
+import { usePhysiotherapistUpdateMutations } from "@/utilities/usePhysiotherapistUpdateMutations";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
@@ -13,7 +15,10 @@ export const VisitType = ({
   name,
   price,
   deleteIcon,
+  id,
 }: VisitTypeProps): JSX.Element => {
+  const { onDeleteVisitType } = usePhysiotherapistUpdateMutations();
+
   return (
     <Flex
       h="40px"
@@ -26,7 +31,17 @@ export const VisitType = ({
         <Text>{` ${name}`}</Text>
         <Text ml="10px">{`- ${price}zł`}</Text>
       </Flex>
-      {deleteIcon && <DeleteIcon />}
+      {deleteIcon && (
+        <DeleteIcon
+          cursor="pointer"
+          onClick={() => {
+            void onDeleteVisitType({
+              refetchQueries: [VisitTypesDocument],
+              variables: { id },
+            });
+          }}
+        />
+      )}
     </Flex>
   );
 };

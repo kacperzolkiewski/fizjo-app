@@ -5,8 +5,14 @@ import { Button, Flex, useToast } from "@chakra-ui/react";
 import { FormField } from "@/components/FormField";
 import { registerSchema } from "@/features/register/utilities/registerSchema";
 import { useSignUpEmailPassword } from "@nhost/react";
-import { useCreatePhysiotherapistMutation } from "@/features/physiotherapist/api/graphql";
-import { useCreatePatientMutation } from "@/features/profil/api/graphql";
+import {
+  GetUserByIdDocument,
+  useCreatePhysiotherapistMutation,
+} from "@/features/physiotherapist/api/graphql";
+import {
+  PatientByUserIdDocument,
+  useCreatePatientMutation,
+} from "@/features/profil/api/graphql";
 
 export const RegisterView = ({
   isPatient,
@@ -49,6 +55,7 @@ export const RegisterView = ({
     } else {
       isPatient
         ? await createPatient({
+            refetchQueries: [PatientByUserIdDocument],
             variables: {
               name: data.name,
               surname: data.surname,
@@ -56,6 +63,7 @@ export const RegisterView = ({
             },
           })
         : await createPhysiotherapist({
+            refetchQueries: [GetUserByIdDocument],
             variables: {
               name: data.name,
               surname: data.surname,

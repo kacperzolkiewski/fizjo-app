@@ -1,9 +1,10 @@
-import { CalendarIcon } from "@chakra-ui/icons";
+import { CalendarIcon, ChatIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
   Heading,
   Stack,
+  Text,
   useDisclosure,
   useToast,
   VStack,
@@ -17,7 +18,7 @@ import { OpinionsModal } from "@/features/profil/components/OpinionsModal";
 import { ProfilPropertyBox } from "@/components/ProfilPropertyBox";
 import { VisitTypesModal } from "@/features/profil/components/VisitTypesModal";
 import { usePhysiotherapistQuery } from "@/features/physiotherapist/api/graphql";
-import { useCreateOpinionMutation } from "@/api/graphql";
+import { OpinionsDocument, useCreateOpinionMutation } from "@/api/graphql";
 import { usePatient } from "@/utilities/usePatient";
 import dynamic from "next/dynamic";
 const MapModal = dynamic(
@@ -38,6 +39,23 @@ export const PhysiotherapistView = (): JSX.Element => {
 
   return (
     <Stack p="20px" h="100vh" justifyContent="center">
+      <Flex
+        flexDir="column"
+        alignItems="center"
+        position="absolute"
+        right={20}
+        top={20}
+      >
+        <ChatIcon
+          cursor="pointer"
+          height={50}
+          width={50}
+          onClick={() => {
+            void router.push(`/messenger/${String(id)}`);
+          }}
+        />
+        <Text fontSize={20}>Napisz do mnie</Text>
+      </Flex>
       <Flex
         w="100%"
         h="60%"
@@ -79,7 +97,7 @@ export const PhysiotherapistView = (): JSX.Element => {
                 return;
               }
               void createOpininon({
-                refetchQueries: ["OpinionsQuery"],
+                refetchQueries: [OpinionsDocument],
                 variables: {
                   comment,
                   physiotherapist_id: id,
@@ -119,6 +137,9 @@ export const PhysiotherapistView = (): JSX.Element => {
           rounded={8}
           p="10px"
           boxShadow="8px 8px 24px 0px rgba(66, 68, 90, 0.2)"
+          onClick={() => {
+            void router.push(`${id}/calendar`);
+          }}
         >
           <Heading fontSize="18px" color="purple.500">
             Kalendarz

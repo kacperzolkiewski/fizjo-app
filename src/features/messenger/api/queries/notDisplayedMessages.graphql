@@ -1,0 +1,16 @@
+query NotDisplayedMessages(
+  $patient_id: uuid = ""
+  $physiotherapist_id: uuid = ""
+  $not_created_by: uuid = ""
+) {
+  messages(
+    where: {
+      patient_id: { _eq: $patient_id }
+      displayed: { _eq: false }
+      physiotherapist_id: { _eq: $physiotherapist_id }
+      created_by: { _neq: $not_created_by }
+    }
+  ) {
+    id
+  }
+}

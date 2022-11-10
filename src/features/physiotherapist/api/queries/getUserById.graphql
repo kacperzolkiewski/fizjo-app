@@ -6,5 +6,10 @@ query GetUserById($user_id: uuid = "") {
     name
     surname
     phone
+    startWork
+    endWork
+    user {
+      email
+    }
   }
 }

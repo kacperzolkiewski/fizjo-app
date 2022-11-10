@@ -22,7 +22,8 @@
         "patterns": ["./*", "../*", ".."]
       }
     ],
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/restrict-template-expressions": "off"
   },
   "ignorePatterns": ["graphql.ts", "next-env.d.ts"]
 }

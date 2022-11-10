@@ -4,6 +4,7 @@ query UserMessages($physiotherapist_id: uuid = "", $patient_id: uuid = "") {
       physiotherapist_id: { _eq: $physiotherapist_id }
       patient_id: { _eq: $patient_id }
     }
+    order_by: { created_at: asc }
   ) {
     id
     created_at
@@ -11,5 +12,6 @@ query UserMessages($physiotherapist_id: uuid = "", $patient_id: uuid = "") {
     patient_id
     physiotherapist_id
     created_by
+    displayed
   }
 }

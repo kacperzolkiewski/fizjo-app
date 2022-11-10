@@ -10,7 +10,7 @@ export const registerSchema = yup.object().shape({
   password: yup
     .string()
     .min(8, (l) => `Hasło ma minimum ${l.min} znaków`)
-    .max(15)
+    .max(15, (l) => `Hasło ma maksimum ${l.max} znaków`)
     .required("Hasło jest wymagane"),
   confirmPassword: yup
     .string()

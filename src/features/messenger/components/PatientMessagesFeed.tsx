@@ -39,7 +39,13 @@ export const PatientMessagesFeed = ({
   const messages = messagesData?.messages ?? [];
 
   return (
-    <Flex pl="20px" w="100%" flexDir="column" justifyContent="space-between">
+    <Flex
+      pl="20px"
+      w="100%"
+      flexDir="column"
+      justifyContent="space-between"
+      position="relative"
+    >
       <HStack borderBottom="1px solid #EDF2F7" bg="white" h="15%" pl="40px">
         <Image src={AvatarImage} width="90px" height="90px" />
         <Heading>{`${physiotherapist?.name ?? ""} ${
@@ -49,14 +55,13 @@ export const PatientMessagesFeed = ({
       <Flex
         flexDir="column"
         bg="white"
-        h="85vh"
-        overflow="auto"
+        height="85vh"
         pb="20px"
+        justifyContent="flex-end"
         px="20px"
-        position="relative"
       >
         <Messages messages={messages} createdBy={patientId} />
-        <InputGroup position="sticky" bottom="5px" bg="white">
+        <InputGroup bg="white" position="sticky" bottom={5}>
           <Input
             placeholder="Aa..."
             value={newMessage}
@@ -79,6 +84,9 @@ export const PatientMessagesFeed = ({
                   onCompleted() {
                     void refetch();
                     setNewMessage("");
+                  },
+                  onError(error) {
+                    console.log(error);
                   },
                 });
               }}

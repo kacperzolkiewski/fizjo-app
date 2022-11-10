@@ -57,10 +57,10 @@ export const PhysiotherapistMessagesFeed = ({
         flexDir="column"
         bg="white"
         h="85vh"
-        overflow="auto"
         pb="20px"
         px="20px"
         position="relative"
+        justifyContent="flex-end"
       >
         <Messages messages={messages} createdBy={physiotherapistId} />
         <InputGroup position="sticky" bottom="5px" bg="white">
