@@ -1,9 +1,18 @@
-import { createCalendarItems } from "@/utilities/createCalendarItems";
+import { useCalendarDays } from "@/utilities/useCalendarIDays";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { Flex, Heading, HStack, Stack } from "@chakra-ui/react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 export const CalendarView = () => {
+  const {
+    query: { id },
+  } = useRouter();
+
+  const [startDay, setStartDay] = useState(0);
+  const [endDay, setEndDay] = useState(7);
+  const calendarDays = useCalendarDays(startDay, endDay, String(id));
+
   return (
     <Stack height="100vh" justifyContent="center" alignItems="center">
       <Flex
@@ -18,8 +27,22 @@ export const CalendarView = () => {
       >
         <Heading>Umów wizytę</Heading>
         <Flex mt="30px" mb="20px" w="100%" justifyContent="space-between">
-          <ArrowLeftIcon boxSize="20px" _hover={{ cursor: "pointer" }} />
-          <ArrowRightIcon boxSize="20px" _hover={{ cursor: "pointer" }} />
+          <ArrowLeftIcon
+            boxSize="20px"
+            _hover={{ cursor: "pointer" }}
+            onClick={() => {
+              setStartDay((prev) => prev - 7);
+              setEndDay((prev) => prev - 7);
+            }}
+          />
+          <ArrowRightIcon
+            boxSize="20px"
+            _hover={{ cursor: "pointer" }}
+            onClick={() => {
+              setStartDay((prev) => prev + 7);
+              setEndDay((prev) => prev + 7);
+            }}
+          />
         </Flex>
         <HStack
           alignItems="flex-start"
@@ -27,7 +50,7 @@ export const CalendarView = () => {
           w="100%"
           justifyContent="space-around"
         >
-          {createCalendarItems(0, 7)}
+          {calendarDays}
         </HStack>
       </Flex>
     </Stack>

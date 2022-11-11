@@ -1,0 +1,5 @@
+mutation CancelVisit($id: uuid = "") {
+  delete_visits_by_pk(id: $id) {
+    id
+  }
+}

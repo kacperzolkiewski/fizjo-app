@@ -1,8 +1,16 @@
 import { Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
 import { Visit } from "@/features/visits/components/Visit";
+import { usePatientVisitsQuery } from "@/features/visits/api/graphql";
+import { usePatient } from "@/utilities/usePatient";
 
 export const VisitsTable = (): JSX.Element => {
+  const patient = usePatient();
+  const { data } = usePatientVisitsQuery({
+    variables: { id: patient.id },
+  });
+  const visits = data?.visits ?? [];
+
   return (
     <Table
       bg="white"
@@ -22,14 +30,9 @@ export const VisitsTable = (): JSX.Element => {
         </Tr>
       </Thead>
       <Tbody>
-        <Visit />
-        <Visit />
-        <Visit />
-        <Visit />
-        <Visit />
-        <Visit />
-        <Visit />
-        <Visit />
+        {visits.map((visit) => (
+          <Visit key={visit.id} visit={visit} />
+        ))}
       </Tbody>
     </Table>
   );

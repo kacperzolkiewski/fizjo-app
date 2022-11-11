@@ -1,0 +1,15 @@
+query PatientVisits($id: uuid = "") {
+  visits(where: { patient_id: { _eq: $id } }) {
+    id
+    physiotherapist {
+      name
+      surname
+    }
+    end_timestamp
+    start_timestamp
+    visit_type {
+      name
+      price
+    }
+  }
+}

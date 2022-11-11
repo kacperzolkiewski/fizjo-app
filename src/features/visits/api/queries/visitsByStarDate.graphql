@@ -1,0 +1,10 @@
+query VisitsByStartDate($startDate: timestamptz = "", $physioId: uuid = "") {
+  visits(
+    where: {
+      start_timestamp: { _eq: $startDate }
+      physiotherapist_id: { _eq: $physioId }
+    }
+  ) {
+    id
+  }
+}

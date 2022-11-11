@@ -1,0 +1,19 @@
+mutation CreateVisit(
+  $start_timestamp: timestamptz = ""
+  $end_timestamp: timestamptz = ""
+  $patient_id: uuid = ""
+  $physiotherapist_id: uuid = ""
+  $visit_type_id: uuid = ""
+) {
+  insert_visits_one(
+    object: {
+      start_timestamp: $start_timestamp
+      end_timestamp: $end_timestamp
+      patient_id: $patient_id
+      physiotherapist_id: $physiotherapist_id
+      visit_type_id: $visit_type_id
+    }
+  ) {
+    id
+  }
+}

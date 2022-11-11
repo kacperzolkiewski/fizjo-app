@@ -1,37 +1,33 @@
-import { Box, Button, useDisclosure } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import React from "react";
-import { ReserveVisitModal } from "@/components/ReserveVisitModal";
+import { padStart } from "lodash";
 
 interface ReserveVisitButtonProps {
-  hour: string;
-  date: string;
+  date: Date;
+  isReserved: boolean;
+  onClick: (date: Date) => void;
 }
 
 export const ReserveVisitButton = ({
-  hour,
   date,
+  isReserved,
+  onClick,
 }: ReserveVisitButtonProps): JSX.Element => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const hour = `${padStart(String(date.getHours()), 2, "0")}:00`;
 
   return (
     <Box>
       <Button
+        disabled={isReserved}
         mr="4px"
         mt="4px"
         colorScheme="purple"
         w="70px"
         h="35px"
-        onClick={onOpen}
+        onClick={() => onClick(date)}
       >
         {hour}
       </Button>
-      <ReserveVisitModal
-        hour={hour}
-        date={date}
-        isOpen={isOpen}
-        onClose={onClose}
-        onReserveVisit={() => {}}
-      />
     </Box>
   );
 };
