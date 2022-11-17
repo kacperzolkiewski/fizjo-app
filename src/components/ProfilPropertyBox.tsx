@@ -1,18 +1,27 @@
-import { PhoneIcon } from "@chakra-ui/icons";
 import { Button, Heading, Text } from "@chakra-ui/react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 interface ProfilPropertyBoxProps {
   label: string;
   propertyValue?: string | null;
   onClick?: () => void;
+  icon: IconProp;
 }
 
 export const ProfilPropertyBox = ({
   label,
   propertyValue,
   onClick,
+  icon,
 }: ProfilPropertyBoxProps): JSX.Element => {
+  const subValue =
+    propertyValue != null
+      ? propertyValue.length > 25
+        ? propertyValue.substring(0, 25) + "..."
+        : propertyValue
+      : "...";
   return (
     <Button
       display="flex"
@@ -32,8 +41,14 @@ export const ProfilPropertyBox = ({
       <Heading fontSize="18px" color="purple.500">
         {label}
       </Heading>
-      <PhoneIcon position="absolute" right={5} />
-      <Text color="gray">{propertyValue ?? "..."}</Text>
+      {
+        <FontAwesomeIcon
+          style={{ position: "absolute", right: "15px" }}
+          icon={icon}
+          size="xl"
+        />
+      }
+      <Text color="gray">{subValue}</Text>
     </Button>
   );
 };

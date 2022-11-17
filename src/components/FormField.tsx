@@ -39,6 +39,7 @@ export const FormField = ({
     <FormControl isInvalid={Boolean(error)} w={w} mt="15px">
       <FormLabel htmlFor={props.name}>{label}</FormLabel>
       <Input
+        aria-label={`${props.name}-input`}
         type={props.type}
         placeholder={placeholder ?? `...`}
         {...register(props.name)}

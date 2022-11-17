@@ -23,7 +23,7 @@ import { useVisitTypesQuery } from "@/features/physiotherapist/api/graphql";
 import { AddIcon } from "@chakra-ui/icons";
 import { isUndefined } from "lodash";
 import React from "react";
-
+import { faFolderClosed } from "@fortawesome/free-regular-svg-icons";
 interface VisitTypesModalProps {
   onCreateVisitType?: (name: string, price: string) => void;
   physiotherapistId?: string;
@@ -59,6 +59,7 @@ export const VisitTypesModal = ({
         label="Typy wizyt"
         propertyValue="Fizjoterapia 150zł"
         onClick={onOpen}
+        icon={faFolderClosed}
       />
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
         <ModalOverlay />

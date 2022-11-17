@@ -64,8 +64,8 @@ export const LoginView = (): JSX.Element => {
           register={register}
         />
         <FormField
-          type="password"
           name="password"
+          type="password"
           label="Hasło"
           error={errors.password?.message}
           register={register}

@@ -72,6 +72,7 @@ export const PatientMessagesFeed = ({
               w="50px"
               h="30px"
               cursor="pointer"
+              aria-label="send-button"
               onClick={() => {
                 void createNewMessage({
                   variables: {

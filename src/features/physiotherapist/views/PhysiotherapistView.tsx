@@ -1,4 +1,4 @@
-import { CalendarIcon, ChatIcon } from "@chakra-ui/icons";
+import { ChatIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
@@ -21,6 +21,13 @@ import { usePhysiotherapistQuery } from "@/features/physiotherapist/api/graphql"
 import { OpinionsDocument, useCreateOpinionMutation } from "@/api/graphql";
 import { usePatient } from "@/utilities/usePatient";
 import dynamic from "next/dynamic";
+import {
+  faAddressBook,
+  faCalendar,
+  faEnvelope,
+} from "@fortawesome/free-regular-svg-icons";
+import { faInfoCircle, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const MapModal = dynamic(
   async () =>
     await import("../components/MapModal").then((module) => module.MapModal),
@@ -71,15 +78,18 @@ export const PhysiotherapistView = (): JSX.Element => {
           <ProfilPropertyBox
             label="Email"
             propertyValue={physiotherapist?.user?.email}
+            icon={faEnvelope}
           />
           <ProfilPropertyBox
             label="Telefon"
             propertyValue={physiotherapist?.phone}
+            icon={faPhone}
           />
           <ProfilPropertyBox
             onClick={onOpen}
             label="Adres"
             propertyValue={physiotherapist?.adress}
+            icon={faAddressBook}
           />
         </VStack>
         <Flex>
@@ -123,6 +133,7 @@ export const PhysiotherapistView = (): JSX.Element => {
           <ProfilPropertyBox
             label="O mnie"
             propertyValue={physiotherapist?.aboutMe}
+            icon={faInfoCircle}
           />
         </VStack>
         <Button
@@ -144,7 +155,11 @@ export const PhysiotherapistView = (): JSX.Element => {
           <Heading fontSize="18px" color="purple.500">
             Kalendarz
           </Heading>
-          <CalendarIcon position="absolute" right={5} />
+          <FontAwesomeIcon
+            style={{ position: "absolute", right: "15px" }}
+            icon={faCalendar}
+            size="xl"
+          />
         </Button>
       </Flex>
       <MapModal

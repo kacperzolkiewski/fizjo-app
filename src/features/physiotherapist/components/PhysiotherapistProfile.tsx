@@ -24,6 +24,8 @@ import {
   VisitTypesDocument,
 } from "@/features/physiotherapist/api/graphql";
 import { EditPasswordModal } from "@/components/EditPasswordModal";
+import { faAddressBook, faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import { faInfoCircle, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 export const PhysiotherapistProfile = (): JSX.Element => {
   const {
@@ -98,6 +100,7 @@ export const PhysiotherapistProfile = (): JSX.Element => {
                 },
               });
             }}
+            icon={faEnvelope}
           />
           <CustomEditModal
             label="Telefon"
@@ -113,6 +116,7 @@ export const PhysiotherapistProfile = (): JSX.Element => {
                 },
               });
             }}
+            icon={faPhone}
           />
           <CustomEditModal
             label="Adres"
@@ -128,6 +132,7 @@ export const PhysiotherapistProfile = (): JSX.Element => {
                 },
               });
             }}
+            icon={faAddressBook}
           />
         </VStack>
         <Flex>
@@ -162,6 +167,7 @@ export const PhysiotherapistProfile = (): JSX.Element => {
                 },
               });
             }}
+            icon={faInfoCircle}
           />
         </VStack>
       </Flex>
@@ -171,6 +177,7 @@ export const PhysiotherapistProfile = (): JSX.Element => {
           value={startWork}
           onChange={(e) => {
             void onStartWorkUpdate({
+              refetchQueries: [GetUserByIdDocument],
               variables: {
                 id,
                 startWork: Number(e.target.value),
@@ -188,6 +195,7 @@ export const PhysiotherapistProfile = (): JSX.Element => {
           value={endWork}
           onChange={(e) => {
             void onEndWorkUpdate({
+              refetchQueries: [GetUserByIdDocument],
               variables: {
                 id,
                 endWork: Number(e.target.value),

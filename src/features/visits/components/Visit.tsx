@@ -9,9 +9,10 @@ import { format, parseISO } from "date-fns";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface VisitProps {
   visit: ArrayElement<PatientVisitsQuery["visits"]>;
+  isPatient: boolean;
 }
 
-export const Visit = ({ visit }: VisitProps): JSX.Element => {
+export const Visit = ({ visit, isPatient }: VisitProps): JSX.Element => {
   const date = format(parseISO(visit.start_timestamp), "dd.MM.yyyy");
   const duration = `${new Date(visit.start_timestamp)
     .getHours()
@@ -31,7 +32,11 @@ export const Visit = ({ visit }: VisitProps): JSX.Element => {
       <Td>
         {!isNil(visit.visit_type) ? `${visit.visit_type.price}zł` : "---"}
       </Td>
-      <Td>{`${visit.physiotherapist?.name} ${visit.physiotherapist?.surname}`}</Td>
+      <Td>
+        {isPatient
+          ? `${visit.physiotherapist?.name} ${visit.physiotherapist?.surname}`
+          : `${visit.patient?.name} ${visit.patient?.surname}`}
+      </Td>
       <Td>
         <VisitMenu visitId={visit.id} />
       </Td>

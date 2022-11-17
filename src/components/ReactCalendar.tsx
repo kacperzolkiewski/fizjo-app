@@ -1,26 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
 import "moment/locale/pl";
+import { usePhysiotherapistVisitsQuery } from "@/features/visits/api/graphql";
+import { usePhysiotherapist } from "@/utilities/usePhysiotherapist";
 
 const localizer = momentLocalizer(moment);
-
-function addHours(numOfHours: number, date = new Date()) {
-  const dateCopy = new Date(date.getTime());
-
-  dateCopy.setTime(dateCopy.getTime() + numOfHours * 60 * 60 * 1000);
-
-  return dateCopy;
-}
-
-function removeHours(numOfHours: number, date = new Date()) {
-  const dateCopy = new Date(date.getTime());
-
-  dateCopy.setTime(dateCopy.getTime() - numOfHours * 60 * 60 * 1000);
-
-  return dateCopy;
-}
 
 const messages = {
   date: "Data",
@@ -43,9 +29,33 @@ const messages = {
   },
 };
 
+interface Event {
+  start: Date;
+  end: Date;
+  title?: string;
+}
+
 export const ReactCalendar = () => {
-  const date = new Date();
-  const result = addHours(2, date);
+  const physiotherapist = usePhysiotherapist();
+  const { data } = usePhysiotherapistVisitsQuery({
+    variables: { physioId: physiotherapist.id },
+  });
+  const [events, setEvents] = useState<Event[]>([]);
+  const visits = data?.visits ?? [];
+
+  useEffect(() => {
+    const tempEvents: Event[] = [];
+    visits.forEach((visit) => {
+      const start = new Date(visit.start_timestamp);
+      const end = new Date(visit.end_timestamp);
+      tempEvents.push({
+        title: visit.visit_type?.name,
+        start,
+        end,
+      });
+    });
+    setEvents(tempEvents);
+  }, [visits]);
 
   return (
     <Calendar
@@ -53,20 +63,7 @@ export const ReactCalendar = () => {
         width: "100%",
       }}
       localizer={localizer}
-      events={[
-        {
-          title: "Fizjoterapia",
-          allDay: false,
-          start: new Date(),
-          end: result,
-        },
-        {
-          title: "Igłoterapia",
-          allDay: false,
-          start: removeHours(4, date),
-          end: date,
-        },
-      ]}
+      events={events}
       startAccessor="start"
       endAccessor="end"
       messages={messages}

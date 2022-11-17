@@ -16,6 +16,7 @@ import { ProfilPropertyBox } from "@/components/ProfilPropertyBox";
 import * as yup from "yup";
 import { FormField } from "@/components/FormField";
 import React, { useEffect, useState } from "react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface CustomEditModalProps {
   property: string;
@@ -23,6 +24,7 @@ interface CustomEditModalProps {
   label: string;
   schema: yup.AnyObjectSchema;
   onEdit: (value: string) => void;
+  icon: IconProp;
 }
 
 export const CustomEditModal = ({
@@ -31,6 +33,7 @@ export const CustomEditModal = ({
   label,
   schema,
   onEdit,
+  icon,
 }: CustomEditModalProps): JSX.Element => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [inputValue, setValue] = useState(propertyValue);
@@ -56,6 +59,7 @@ export const CustomEditModal = ({
         label={label}
         propertyValue={propertyValue}
         onClick={onOpen}
+        icon={icon}
       />
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />

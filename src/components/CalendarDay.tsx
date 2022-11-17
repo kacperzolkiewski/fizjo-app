@@ -2,7 +2,7 @@ import { Text, useDisclosure, useToast, VStack } from "@chakra-ui/react";
 import React, { ReactElement, useState } from "react";
 import { ReserveVisitButton } from "@/components/ReserveVisitButton";
 import { pl } from "date-fns/locale";
-import { addHours, format, isEqual, parseISO } from "date-fns";
+import { addHours, format, isBefore, isEqual, parseISO } from "date-fns";
 import {
   usePhysiotherapistQuery,
   VisitTypesQuery,
@@ -29,6 +29,10 @@ const checkIfHourIsReserved = (
   physioVisits: PhysiotherapistVisitsQuery["visits"]
 ) => {
   let reserved = false;
+  if (isBefore(visitDate, new Date())) {
+    return true;
+  }
+
   physioVisits.forEach((visit) => {
     if (isEqual(parseISO(visit.start_timestamp), visitDate)) {
       reserved = true;
@@ -118,7 +122,7 @@ export const CalendarDay = ({
             ],
             variables: {
               start_timestamp: visitDate,
-              end_timestamp: addHours(date, 1),
+              end_timestamp: addHours(visitDate, 1),
               physiotherapist_id: physioId,
               patient_id: patient.id,
               visit_type_id: visitTypeId,

@@ -20,6 +20,7 @@ import { ProfilPropertyBox } from "@/components/ProfilPropertyBox";
 import { useOpinionsQuery } from "@/api/graphql";
 import { isUndefined } from "lodash";
 import React, { useState } from "react";
+import { faComments } from "@fortawesome/free-regular-svg-icons";
 
 interface OpinionsModalProps {
   physiotherapistId?: string;
@@ -44,6 +45,7 @@ export const OpinionsModal = ({
         label="Opinie"
         propertyValue={`${opinionsLength} opinii`}
         onClick={onOpen}
+        icon={faComments}
       />
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="3xl">
         <ModalOverlay />

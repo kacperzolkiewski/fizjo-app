@@ -46,7 +46,7 @@ export const VisitMenu = ({ visitId }: { visitId?: string }) => {
         border="none"
         _hover={{ bg: "none" }}
         _active={{ bg: "none" }}
-        aria-label="Więcej działań"
+        aria-label="visit-menu-button"
         size="xs"
       />
       <MenuList>

@@ -1,4 +1,4 @@
-import { ChatIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
@@ -11,6 +11,16 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React from "react";
 import { SignOutModal } from "@/features/navigation/components/SignOutModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendar,
+  faUser,
+  faMessage,
+} from "@fortawesome/free-regular-svg-icons";
+import {
+  faHomeAlt,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 
 const AnimatedFlex = motion(Flex);
 const AnimatedStack = motion(Stack);
@@ -75,28 +85,28 @@ export const NavigationBar = ({
             void push("/");
           }}
         >
-          {isExpanded ? "Strona główna" : null}
+          {isExpanded ? "Strona główna" : <FontAwesomeIcon icon={faHomeAlt} />}
         </Button>
         <Button
           onClick={() => {
             void push("/visits");
           }}
         >
-          {isExpanded ? "Wizyty" : null}
+          {isExpanded ? "Wizyty" : <FontAwesomeIcon icon={faCalendar} />}
         </Button>
         <Button
           onClick={() => {
             void push("/profil");
           }}
         >
-          {isExpanded ? "Profil" : null}
+          {isExpanded ? "Profil" : <FontAwesomeIcon icon={faUser} />}
         </Button>
         <Button
           onClick={() => {
             void push("/messenger");
           }}
         >
-          {isExpanded ? "Wiadomości" : <ChatIcon />}
+          {isExpanded ? "Wiadomości" : <FontAwesomeIcon icon={faMessage} />}
         </Button>
       </AnimatedStack>
       <AnimatedStack
@@ -104,7 +114,13 @@ export const NavigationBar = ({
         variants={stackVariants}
         animate={currentVariant}
       >
-        <Button onClick={onOpen}>{isExpanded ? "Wyloguj" : null}</Button>
+        <Button onClick={onOpen}>
+          {isExpanded ? (
+            "Wyloguj"
+          ) : (
+            <FontAwesomeIcon icon={faRightFromBracket} />
+          )}
+        </Button>
         <SignOutModal
           isOpen={isOpen}
           onClose={onClose}

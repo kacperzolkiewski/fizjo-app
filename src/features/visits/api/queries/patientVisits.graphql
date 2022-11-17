@@ -5,6 +5,10 @@ query PatientVisits($id: uuid = "") {
       name
       surname
     }
+    patient {
+      name
+      surname
+    }
     end_timestamp
     start_timestamp
     visit_type {

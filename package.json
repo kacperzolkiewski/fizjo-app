@@ -13,7 +13,11 @@
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
-    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run",
+    "e2e": "start-server-and-test start http://localhost:3000 cypress",
+    "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -25,6 +29,11 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fontsource/raleway": "^4.5.10",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@hookform/resolvers": "^2.9.7",
     "@nhost/react": "^0.12.3",
     "@nhost/react-apollo": "^4.7.3",
@@ -54,6 +63,7 @@
     "@types/react-calendar": "^3.5.3",
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "cypress": "^11.0.1",
     "eslint": "^8.0.1",
     "eslint-config-next": "12.2.5",
     "eslint-config-prettier": "^8.5.0",
@@ -63,6 +73,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.10",
     "husky": "^8.0.0",
+    "mocha": "^10.1.0",
     "typescript": "*"
   }
 }

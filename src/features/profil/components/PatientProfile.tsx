@@ -76,6 +76,7 @@ export const PatientProfile = (): JSX.Element => {
           <GridText label="Pesel" value={pesel} />
           <GridText label="Telefon" value={phone} />
           <EditIcon
+            aria-label="edit-profile"
             position="absolute"
             w="100px"
             h="100px"

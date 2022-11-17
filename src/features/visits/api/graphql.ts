@@ -7141,7 +7141,7 @@ export type PatientVisitsQueryVariables = Exact<{
 }>;
 
 
-export type PatientVisitsQuery = { __typename?: 'query_root', visits: Array<{ __typename?: 'visits', id: any, end_timestamp: any, start_timestamp: any, physiotherapist?: { __typename?: 'physiotherapists', name: string, surname: string } | null, visit_type?: { __typename?: 'visit_types', name: string, price: string } | null }> };
+export type PatientVisitsQuery = { __typename?: 'query_root', visits: Array<{ __typename?: 'visits', id: any, end_timestamp: any, start_timestamp: any, physiotherapist?: { __typename?: 'physiotherapists', name: string, surname: string } | null, patient?: { __typename?: 'patients', name: string, surname: string } | null, visit_type?: { __typename?: 'visit_types', name: string, price: string } | null }> };
 
 export type PhysiotherapistVisitsQueryVariables = Exact<{
   physioId?: InputMaybe<Scalars['uuid']>;
@@ -7236,6 +7236,10 @@ export const PatientVisitsDocument = gql`
   visits(where: {patient_id: {_eq: $id}}) {
     id
     physiotherapist {
+      name
+      surname
+    }
+    patient {
       name
       surname
     }
