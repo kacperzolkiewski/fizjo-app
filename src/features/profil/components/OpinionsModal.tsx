@@ -77,7 +77,7 @@ export const OpinionsModal = ({
               <VStack
                 flexDir="column"
                 spacing={4}
-                maxH="500px"
+                maxH={addOpinion != null ? "600px" : "700px"}
                 overflow="scroll"
               >
                 {opinions.map((opinion) => (
