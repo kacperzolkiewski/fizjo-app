@@ -72,6 +72,7 @@ The application is tested using **Cypress**, an end-to-end testing framework. Cy
 
 ## 💬 Contact
 
+
 If you have any questions or want to discuss my project, feel free to reach out!
 
 - **Email**: kacperzolkiewski@gmail.com
